@@ -26,3 +26,8 @@ Alexander Sternfeld, Dr. Elena Nazarenko, Prof. Dr. Aygul Zagidullina, Gaetan St
 * 16.00 - 16.45: Guardrails selection, implementation, testing and fine-tuning
 * 16.45 - 17.15: Threat modeling and basics of MLOps for LLM security
 * 17.15 - 17.30: Closing remarks
+
+" "         |  " "         |  " "         |  " "
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](assets/)  |  ![](assets/)  |  ![](assets/)  |  ![](assets/)
+
