@@ -29,5 +29,5 @@ Alexander Sternfeld, Dr. Elena Nazarenko, Prof. Dr. Aygul Zagidullina, Gaetan St
 
 " "         |  " "         |  " "         |  " "
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](assets/)  |  ![](assets/)  |  ![](assets/)  |  ![](assets/)
+![](assets/images/amld.png)  |  ![](assets/images/hes-so.png)  |  ![](assets/images/HSLU.jpg)  |  ![](assets/images/exoscale.png)
 
