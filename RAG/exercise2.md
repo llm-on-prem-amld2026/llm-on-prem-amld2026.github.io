@@ -1,6 +1,6 @@
 ---
 title: "Exercise 2"
-parent: rag_general
+parent: "Powering LLMs with RAG"
 nav_order: 2
 ---
 
