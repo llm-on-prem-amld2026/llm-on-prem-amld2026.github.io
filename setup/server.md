@@ -7,14 +7,18 @@ nav_order: 1
 Welcome to our workshop. The first step is to connect to your own compute instance, provided to you by [Exoscale](https://www.exoscale.com/?utm_source=google&utm_medium=cpc&utm_campaign=eu-en-b-exoscale&utm_term=exoscale&gad_source=1&gad_campaignid=12788996154&gbraid=0AAAAACltiW5lUzUBRaS7Au0ZZINQu2kbU&gclid=CjwKCAiA3L_JBhAlEiwAlcWO52vJFNpgN7y3rlQZJUXoVoxIslviqV2--jvcB-LyM_P0iNqR_YCvMRoCy9sQAvD_BwE). Make sure that you have **picked up a paper with an (IP, password) combination from the workshop organizers.** 
 
 ## Connecting to the machine through SSH
-Follow the following steps to connect to your machine:
+We will now connect to our machine through SSH
 
-* Open a terminal of your preference: powershell, command prompt, zsh, ...
-* Connect to your machine with the command `ssh YOURIP@ubuntu`, where you enter the IP that is given to you
-* Enter the password, and connect!
+{: .action}
+1. Open a terminal of your preference: powershell, command prompt, zsh, ...
+2. Connect to your machine with the command `ssh YOURIP@ubuntu`, where you enter the IP that is given to you
+3. Enter the password, and connect!
 
 ## Installing Docker and Nvidia drivers
-Before we can launch our Open WebUI instance, we need to install Docker and Nvidia drivers and toolkit. If you are unfamiliar with Docker/Nvidia drivers and want to learn more, please refer to the [additional information](../additional_information.md) section. If you simply want to continue to set up your environment, please copy and paste the following script on the command line of your compute instance. 
+Before we can launch our Open WebUI instance, we need to install Docker and Nvidia drivers and toolkit. If you are unfamiliar with Docker/Nvidia drivers and want to learn more, please refer to the [additional information](../additional_information.md) section. If you simply want to continue to set up your environment, we do so by executing the script below.
+
+{: .action}
+Copy the script below on the command line of your compute instance, and execute it.
 
 ```bash
 # Install docker
