@@ -15,13 +15,14 @@ We will set up an [Open WebUI](https://openwebui.com/) instance, with LLMs runni
 | nano | create / edit a file   |
 | cd           | go into or out of a directory      |
 
-Please follow the following steps:
+We can now set up and launch our Open WebUI instance.
 
-* Create the directory for openwebui: `mkdir openwebui`
-* Move into the openwebui directory: `cd openwebui`
-* Create the docker compose file: `nano docker-compose.yaml`
-
-Now paste the following code in the docker compose file:
+{: .action}
+1. Create the directory for openwebui: `mkdir openwebui`
+2. Move into the openwebui directory: `cd openwebui`
+3. Create the docker compose file: `nano docker-compose.yaml`, and paste the code below. You can exit and save the file through the commands `ctrl X + Y`
+4. Now you can start both Ollama and Open WebUI by running `sudo docker compose up -d`
+5. Verify with `sudo docker ps` that both containers run well
 
 ```yaml
 services:
@@ -60,13 +61,20 @@ services:
     restart: unless-stopped
 ```
 
-├── openwebui
-│   ├── docker-compose.yaml
-│   └── docker-compose.yaml.save
+{: .note}
+Here we describe the principal configuration options for Open WebUI that are set in the docker compose file.
+* _volumes_: here we specify where the data will be stored, in our case in a folder `data_openwebui`
+* _depends_on_: this makes sure that Ollama starts before Open WebUI starts
+* _ports_: we choose to map the port 8080 in the container to port 3000 on the machine. Therefore, our Open WebUI will be available on port 3000.
+* _environment_: here we specify where Ollama is running. We could also secure our application more tightly by specifying a secret key.
 
-{: .tip}
-> Test whether this works
-> Another note
 
 ## Accessing the Open WebUI instance
+Now we can access our Open WebUI instance at the following address: `http://YOURIP/3000`. Here, you can set up your login credentials, and start your first chat.
 
+{: .action}
+1. Access your Open WebUI instance, and set up your login details.
+2. 
+
+## Video
+Here will be a demonstrative video.
