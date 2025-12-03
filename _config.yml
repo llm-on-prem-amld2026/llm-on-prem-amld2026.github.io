@@ -1,3 +1,13 @@
 title: "LLM Workshop"
 description: "Hands-on workshop materials"
 remote_theme: just-the-docs/just-the-docs
+callouts:
+  warning:
+    title: Warning
+    color: red
+  tip:
+    title: Tip
+    color: green
+  note:
+    title: Note
+    color: yellow
