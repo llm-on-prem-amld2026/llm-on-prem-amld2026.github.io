@@ -1,4 +1,5 @@
 ---
 title: "Exercise 2"
-nav_order: 4
+parent: rag_general
+nav_order: 2
 ---
