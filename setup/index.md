@@ -1,6 +1,6 @@
 ---
-title: "Setting up your Open WebUI"
+title: "Setting up your own Open WebUI"
 nav_order: 2
 ---
 
-Here will be the instruction to set up your Open WebUI
+Welcome to our workshop. THere will be the instruction to set up your Open WebUI
