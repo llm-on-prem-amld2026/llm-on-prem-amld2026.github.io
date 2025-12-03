@@ -8,7 +8,8 @@ Now that you have set up your machine, we can continue to launching our Open Web
 
 ## Launching our Open WebUI instance
 {: .tip}
-Test whether this works
+> Test whether this works
+> Another note
 
 ## Accessing the Open WebUI instance
 
