@@ -74,7 +74,11 @@ Now we can access our Open WebUI instance at the following address: `http://YOUR
 
 {: .action}
 1. Access your Open WebUI instance, and set up your login details.
-2. 
+2. Load a model from [Ollama](https://ollama.com/search), by clicking on the model selection button, entering the name, and choosing _Pull from Ollama.com_ We recommend for a short test the model `llama3.1:8b`.
+3. Take a few minutes to browse through the Open WebUI interface. What kind of options can you discover?
+
+{: .warning}
+You are limited to XXXX GB of memory (RAM). Make sure to not load too many models simultaneously, otherwise you may overload this memory. If you want to remove a model, you can do so TO BE COMPLETED (UPDATED IN LATEST OPEN WEBUI).
 
 ## Video
 Here will be a demonstrative video.
