@@ -1,5 +1,5 @@
 ---
-title: "Setting up your own Open WebUI"
+title: "Technical installation"
 nav_order: 2
 ---
 
