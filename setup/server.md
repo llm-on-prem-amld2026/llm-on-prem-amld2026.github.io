@@ -13,7 +13,29 @@ Follow the following steps to connect to your machine:
 * Connect to your machine with the command `ssh YOURIP@ubuntu`, where you enter the IP that is given to you
 * Enter the password, and connect!
 
-## 
+## Installing Docker and Nvidia drivers
+Before we can launch our Open WebUI instance, we need to install Docker and Nvidia drivers and toolkit. If you are unfamiliar with Docker/Nvidia drivers and want to learn more, please refer to the [additional information](../additional_information.md) section. If you simply want to continue to set up your environment, please copy and paste the following script on the command line of your compute instance. 
+
+```bash
+# Install docker
+curl -fsSL https://get.docker.com | sh
+sudo systemctl restart docker
+
+# Install Nvidia drivers needed to run the toolkit
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+sudo apt install -y nvidia-driver-550-server nvidia-utils-550-server nvidia-container-toolkit
+sudo reboot
+```
+Running the script will have made you exit the machine, as it needs to reboot. Simply connect again by entering your password.
+
+```markdown
+{: .tip}
+By using the arrow up key, you can quickly use a previous command again. For example, when re-connecting to the machine. 
+```
 
 ## Common problems
 
