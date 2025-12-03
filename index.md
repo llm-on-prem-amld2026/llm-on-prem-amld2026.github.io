@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Welcome
-nav: 1
+nav_order: 1
 ---
 
 # LLM Workshop
