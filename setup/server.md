@@ -32,10 +32,8 @@ sudo reboot
 ```
 Running the script will have made you exit the machine, as it needs to reboot. Simply connect again by entering your password.
 
-```markdown
 {: .tip}
 By using the arrow up key, you can quickly use a previous command again. For example, when re-connecting to the machine. 
-```
 
 ## Common problems
 
