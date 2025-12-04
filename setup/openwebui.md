@@ -68,17 +68,18 @@ services:
 > * _ports_: we choose to map the port 8080 in the container to port 3000 on the machine. Therefore, our Open WebUI will be available on port 3000.
 > * _environment_: here we specify where Ollama is running. We could also secure our application more tightly by specifying a secret key.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fTbv9woR-F8?si=-7UyDPDZJy4kR06b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Accessing the Open WebUI instance
 Now we can access our Open WebUI instance at the following address: `http://YOURIP/3000`. Here, you can set up your login credentials, and start your first chat.
 
 {: .action}
-> 1. Access your Open WebUI instance, and set up your login details.
+> 1. Access your Open WebUI instance at `http://YOURIP/3000`, and set up your login details. 
 > 2. Load a model from [Ollama](https://ollama.com/search), by clicking on the model selection button, entering the name, and choosing _Pull from Ollama.com_ We recommend for a short test the model `llama3.1:8b`.
 > 3. Take a few minutes to browse through the Open WebUI interface. What kind of options can you discover?
 
 {: .warning}
-You are limited to XXXX GB of memory (RAM). Make sure to not load too many models simultaneously, otherwise you may overload this memory. If you want to remove a model, you can do so TO BE COMPLETED (UPDATED IN LATEST OPEN WEBUI).
+You are limited to XXXX GB of memory (RAM). Make sure to not load too many models simultaneously, otherwise you may overload this memory. If you want to remove a model, you can do so by going to the admin panel > settings > connections. Here, next to `http://ollama:11434`, you will see a "manage" button, where you can delete models. 
 
-## Video
-Here will be a demonstrative video.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/smPmNy_bcGg?si=LOxC-vHxRPKI_IwA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
