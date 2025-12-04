@@ -45,7 +45,4 @@ Running the script will have made you exit the machine, as it needs to reboot. S
 {: .tip}
 By using the arrow up key, you can quickly use a previous command again. For example, when re-connecting to the machine. 
 
-## Common problems
-
-## Video instructions
-Here will be a video with instructions
+<iframe width="560" height="315" src="https://youtu.be/L_7PrpTrK4s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
