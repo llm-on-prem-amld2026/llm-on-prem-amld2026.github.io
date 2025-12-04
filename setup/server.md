@@ -14,7 +14,7 @@ We will now connect to our machine through SSH
 > 2. Connect to your machine with the command `ssh YOURIP@ubuntu`, where you enter the IP that is given to you
 > 3. Enter the password, and connect!
 
-<video src="../assets/videos/machine_login.mp4" width="320" height="240" controls></video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m5I15UTNp6Y?si=fbFOFsXy8SV8SOKe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Installing Docker and Nvidia drivers
 Before we can launch our Open WebUI instance, we need to install Docker and Nvidia drivers and toolkit. If you are unfamiliar with Docker/Nvidia drivers and want to learn more, please refer to the [additional information](../additional_information.md) section. If you simply want to continue to set up your environment, we do so by executing the script below.
