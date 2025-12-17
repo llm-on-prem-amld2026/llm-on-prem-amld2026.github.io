@@ -1,5 +1,5 @@
 ---
-title: "Setting up your tool server"
+title: "Quickstart"
 parent: "Model Context Protocol (MCP)"
 nav_order: 1
 ---
