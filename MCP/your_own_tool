@@ -3,6 +3,7 @@ title: "Your own MCP"
 parent: "Model Context Protocol (MCP)"
 nav_order: 2
 ---
+
 Here we provide you with several ideas to gain more experience with building your own MCP. Specifically, we discuss three options:
 1. Extend the MCP that we discuss in the [Quickstart](quickstart.md).
 2. Build a MCP based upon a different public dataset. 
