@@ -10,7 +10,12 @@ Here we provide you with several ideas to gain more experience with building you
 3. Build a MCP unrelated to a dataset
 
 ## Extend the user database MCP
-
+<details>
+  <summary>Show a solution</summary>
+  ```python
+  Here will be a solution
+  ```
+</details>
 
 ## Build a MCP on a different data source
 There are different CSV files available [here](https://www.datablist.com/learn/csv/download-sample-csv-files), but you can also choose a differen type of data.
