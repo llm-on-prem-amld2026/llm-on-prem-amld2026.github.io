@@ -12,9 +12,9 @@ Here we provide you with several ideas to gain more experience with building you
 ## Extend the user database MCP
 <details>
   <summary>Show a solution</summary>
-  ```python
-  Here will be a solution
-  ```
+      ```python
+      Here will be a solution
+      ```
 </details>
 
 ## Build a MCP on a different data source
