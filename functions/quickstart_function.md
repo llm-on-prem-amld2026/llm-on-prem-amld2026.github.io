@@ -14,7 +14,7 @@ There are three types of functions you can use:
 
 In this section, you will learn how to add functions to Open WebUI, and how to enable them in a chat. In the next section, you will build your own Open WebUI function for an agentic coding framework. 
 
-## Writing your own function
+## Filter functions
 Each of the different function types has it's own structure, which is described in the [documentation](https://docs.openwebui.com/features/plugin/functions/). Here, we will discuss the [filter function](https://docs.openwebui.com/features/plugin/functions/filter), while in the next section you will work with pipe functions. The filter function is structured as follows:
 
 ```python
@@ -52,4 +52,13 @@ A filter contains the following components:
 * **Outlet:** the outlet function is the last part of the pipeline, enabling you to adjust the final LLM output. 
 
 ## Adding your function to Open WebUI
+We will now experiment with an existing filter function, obtained from the community-created functions available [here](https://openwebui.com/?sort=new&t=all). 
 
+
+
+{: .action}
+1. In your Open WebUI instance, go to `admin panel` -> `functions`
+2. In the top right, click on `+ New Function`
+3.  
+
+## Writing your own function
