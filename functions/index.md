@@ -1,5 +1,5 @@
 ---
 layout: default
-title: Functions and Tools
+title: Functions and Agentic Workflows
 nav_order: 5
 ---
