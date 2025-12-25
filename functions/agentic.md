@@ -4,7 +4,10 @@ parent: "Functions and Agentic Workflows"
 nav_order: 2
 ---
 
-We now move to a more advanced functionality in Open WebUI: [pipe functions](https://docs.openwebui.com/features/plugin/functions/pipe/). With a pipe, you build your own model in Open WebUI, with full control over how the data flows and which models are included in the pipeline. The basic structure of a pipe function is as follows:
+## Agentic pipelines
+Now that you have experimented with filters, we move to a more advanced functionality in Open WebUI: [pipe functions](https://docs.openwebui.com/features/plugin/functions/pipe/). With a pipe, you build your own model in Open WebUI, with full control over how the data flows and which models are included in the pipeline. With such pipes, there are many possibilities, such as the integration of external API's, combining multiple models or using external libraries. In this workshop, we will demonstrate how to use pipes for building an agentic pipeline for a simple safety evaluation of generated code. 
+
+The basic structure of a pipe function is as follows:
 
 ```python
 from pydantic import BaseModel, Field
@@ -29,3 +32,5 @@ class Pipe:
         model = body.get("model", "")
         return f"{model}: Hello, World!"
 ```
+
+## Code safety evaluation
