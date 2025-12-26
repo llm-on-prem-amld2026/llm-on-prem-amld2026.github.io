@@ -48,7 +48,7 @@ We will now build a pipe for code generation with LLMs, that puts a particular f
 
 {: .action}
 > To have a first view of what is possible with pipes, we have provided you with an example pipe in the code block below. You can use the pipe by following these steps:
-> 
+> 1. Go to `Admin Panel -> Functions -> + New Function`. Paste the c
 
 {: .tip}
 > Rather than just copy-pasting the code below into your Open WebUI instance, we recommend you to take a closer look at the function to gain an understanding of how such pipes are structured. Here is some additional information on the implementation:
