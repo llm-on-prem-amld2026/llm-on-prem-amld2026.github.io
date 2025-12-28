@@ -48,7 +48,12 @@ We will now build a pipe for code generation with LLMs, that puts a particular f
 
 {: .action}
 > To have a first view of what is possible with pipes, we have provided you with an example pipe in the code block below. You can use the pipe by following these steps:
-> 1. Go to `Admin Panel -> Functions -> + New Function`. Paste the c
+> 1. Go to `Admin Panel -> Functions -> + New Function`. Paste the code below into the function, and give the function a name and description. Do not forget to save the function.
+> 2. After composing the function, enable it in the `Functions` tab in the admin panel. Now, when choosing a model when starting a new chat, you should have the option of choosing your pipe, which is named _SafeCoder, model: llama3.1:8b_.
+> 3. Now you can test your new pipeline, and see how it performs. Below we provide a few prompts to give you inspiration as to what kind of questions you may ask, but we recommend you to let your inspiration run free and test different things. Is the model able to provide valuable input regarding the vulnerabilities of the code? In what cases does the pipeline perform well, and when does the performance degrade? How would you want to improve the pipeline? When you are done with testing the pipeline, if time allows, you can move on to the section with additional exercises to deepen your experience with Open WebUI functions.
+>     * _Write code to greet a user in HTML, based on the input of a name._
+>     * _Write a function in Python to compute the factorial of an integer that is provided as a variable._
+>     * _Write a function to search in bash for a file that is put in as a variable in the function._
 
 {: .tip}
 > Rather than just copy-pasting the code below into your Open WebUI instance, we recommend you to take a closer look at the function to gain an understanding of how such pipes are structured. Here is some additional information on the implementation:
@@ -88,7 +93,7 @@ class User(BaseModel):
 class Pipe:
     class Valves(BaseModel):
         MODEL: str = Field(
-            default="llama3:8b",
+            default="llama3.1:8b",
             description="The model to use for the pipeline.",
         )
         GENERATION_MODE: str = Field(
