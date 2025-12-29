@@ -26,45 +26,9 @@ In this exercise, you will add more functionalities to the MCP for a user databa
 * Get a random sample of users from the dataset.
 
 <details>
-  <summary>Show a solution</summary>
-      <pre><code class="language-python">
-@mcp.tool
-def count_by_age_and_job(min_age: int, max_age: int, keyword: str):
-  """
-  Count the number of males and females within a specific age range who have a job title containing a given keyword.
+<summary>Show solution</summary>
 
-  Parameters:
-  - min_age (int): Minimum age (inclusive)
-  - max_age (int): Maximum age (inclusive)
-  - keyword (str): Keyword to search for in job titles (e.g., 'manager'). Case-insensitive.
-
-  Returns:
-  - dict: {"male": int, "female": int}
-  """
-  keyword = keyword.lower()
-  filtered = df[(df['Age'] >= min_age) & (df['Age'] <= max_age) & (df['Job Title'].str.contains(keyword, na=False))]
-  males = filtered[filtered['Sex'] == 'male'].shape[0]
-  females = filtered[filtered['Sex'] == 'female'].shape[0]
-  return f"There are {males} men and {females} women within the ages {min_age} and {max_age} with a job title containing the keyword {keyword}."
-
-@mcp.tool
-def most_common_names(gender: str, top_n: int = 10):
-    """
-    Return the most common first and last names for a given gender.
-
-    Parameters:
-    - gender (str): "male" or "female" (case-insensitive). Accepts variations like "man", "woman", "f", "m".
-    - top_n (int): Number of top names to return (default: 10)
-
-    Returns:
-    - dict: {"first_names": {name: count}, "last_names": {name: count}}
-    """
-    gender = normalize_gender(gender)
-    filtered = df[df['Sex'] == gender]
-    first_names = filtered['First Name'].value_counts().head(top_n).to_dict()
-    last_names = filtered['Last Name'].value_counts().head(top_n).to_dict()
-    return f"The top {top_n} most common first names for the gender {gender} are {first_names}, the most common last names are {last_names}."
-
+<pre><code class="language-python">
 @mcp.tool
 def email_domain_stats(domain: str):
     """
@@ -80,7 +44,11 @@ def email_domain_stats(domain: str):
     filtered = df[df['Email'].str.endswith(domain)]
     males = filtered[filtered['Sex'] == 'male'].shape[0]
     females = filtered[filtered['Sex'] == 'female'].shape[0]
-    return f"There are in total {filtered.shape[0]} users with emails ending with {domain}, of which {males} men and {females} women."
+    return (
+        f"There are in total {filtered.shape[0]} users with emails ending "
+        f"with {domain}, of which {males} men and {females} women."
+    )
+
 
 @mcp.tool
 def random_sample(n: int = 5, gender: str = None):
@@ -97,6 +65,7 @@ def random_sample(n: int = 5, gender: str = None):
     """
     sample_df = df
     gender_label = "all users"
+
     if gender:
         gender = normalize_gender(gender)
         sample_df = sample_df[sample_df['Sex'] == gender]
@@ -106,9 +75,9 @@ def random_sample(n: int = 5, gender: str = None):
     sample_size = min(n, total_available)
     sampled = sample_df.sample(sample_size)
 
-    users = sampled[['First Name', 'Last Name', 'Age', 'Job Title']].to_dict(
-        orient='records'
-    )
+    users = sampled[
+        ['First Name', 'Last Name', 'Age', 'Job Title']
+    ].to_dict(orient='records')
 
     description = (
         f"Here is a random sample of {sample_size} {gender_label} "
@@ -120,7 +89,8 @@ def random_sample(n: int = 5, gender: str = None):
         "count": sample_size,
         "users": users,
     }
-      </code></pre>
+</code></pre>
+
 </details>
 
 {: .note}
