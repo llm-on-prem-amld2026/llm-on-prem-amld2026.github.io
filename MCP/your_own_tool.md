@@ -13,9 +13,9 @@ Now that you have gained an initial idea of how MCPs work through a simple examp
 {: .tip}
 > For each of the options, you will be writing your own functions for the MCPs. The following tips may be helpful for each of the exercises.
 > * When composing functions in a MCP, it is vital that the functions are as descriptive as possible. If not, the LLM may misunderstand how the function works and not use it correctly. Pay attention to the following things:
->   * Add the type to each of the input variables of the function (e.g. `n: int = 5`, instead of `n = 5`).
->   * At the beginning of each function, add descriptive documentation. Have a look at the functions in the [Quickstart](quickstart.md) for examples.
->   * The function should return a descriptive sentence. To illustrate, a function should return _"There are 50 men in the dataset"_, instead of returning _50_, for the LLM to understand what is happening.
+>   - Add the type to each of the input variables of the function (e.g. `n: int = 5`, instead of `n = 5`).
+>   - At the beginning of each function, add descriptive documentation. Have a look at the functions in the [Quickstart](quickstart.md) for examples.
+>   - The function should return a descriptive sentence. To illustrate, a function should return _"There are 50 men in the dataset"_, instead of returning _50_, for the LLM to understand what is happening.
 > * When launching a tool server, you can use `tmux` to avoid it blocking your terminal, as discussed in the [Quickstart](quickstart.md). Alternatively, you can simply log onto your server again in a second terminal. 
 
 ## Extend the user database MCP
@@ -148,10 +148,20 @@ def random_sample(n: int = 5, gender: str = None):
 > When you have added new functions to the `tools.py` file, and you have started the tool server, do not forget to add the function names in the Open WebUI instance. Specifically, in the _Function Name Filter List_. When in doubt, you can go through the [Quickstart](quickstart.md) again to look at the sequence of actions for launching a MCP. 
 
 ## Build a MCP on a different data source
-There are different CSV files available [here](https://www.datablist.com/learn/csv/download-sample-csv-files), but you can also choose a differen type of data. The
+Before, you made a MCP with tools for analysing a toy CSV data file. Now, you can take the time to build a MCP server with tools for a more realistic dataset. Below, we provide several suggestions, but you can also choose a dataset of your own. Given that this is an open exercise, we do not provide a sample solution here. If you do wish to do an exercise with an available solution, have a look at the first or third option on this page. If you wish to do build another MCP using a small toy dataset, there are different CSV files available [here](https://www.datablist.com/learn/csv/download-sample-csv-files). Several suggestions for real datasets are:
 
-## LLM-powered MCPs
-The third option is to build a MCP server with LLM-powered tools. You can use the Ollama server that is spinning for your Open WebUI instance to power the tools in your MCP server. Below, you will find a template for the python file that you can use to launch your tool server. Now you can be creative, and think of what 
+* **Data from the stock market:** through [Stooq](https://stooq.com/db/h/) you can obtain free historical market data. To illustrate, `https://stooq.com/q/d/l/?s=msft.us&i=d` would give you daily data on the Microsoft stock (abbreviation `msft`). Using different abbreviations, you can obtain data for different stocks.
+* **Covid data**: through this link[https://data.rivm.nl/data/covid-19/COVID-19_aantallen_gemeente_cumulatief.csv], you can obtain data on Covid cases in the Netherlands.
+
+{: .tip}
+> 
+
+## LLM- or API-powered tools
+The third option is to build a MCP server with LLM-powered tools. You can use the Ollama server that is spinning for your Open WebUI instance to power the tools in your MCP server. Below, you will find a template for the python file that you can use to launch your tool server. Now you can be creative, and construct your own LLM-powered tools. If you would like some inspiration, below are several options. We recommend you to try to independently go through these exercises. When you want, you can view the solution for each of the suggested tools below the template. 
+
+* Compose a tool chaining multiple LLM calls, such as first summarizing a piece of text and then rewriting it in a specific style (e.g. humorous).
+* Compose a tool that verifies whether the prompt violates pre-specified guidelines. 
+* Compose a tool for getting the weather forecast in a specific city, using [this API](https://github.com/chubin/wttr.in), where we suggest to use the JSON output format of the API.
 
 
 ```python
@@ -162,7 +172,7 @@ OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
 MODEL = "llama3.1:8b"
 
 # Initialize FastMCP
-mcp = FastMCP("llm-tools", port=8001)
+mcp = FastMCP("llm-and-api-tools", port=8001)
 mcp.settings.host = "0.0.0.0"
 
 def ollama_generate(
