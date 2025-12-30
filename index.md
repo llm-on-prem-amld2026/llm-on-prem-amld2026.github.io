@@ -17,10 +17,10 @@ Alexander Sternfeld, Dr. Elena Nazarenko, Prof. Dr. Aygul Zagidullina, Gaetan St
 * 10.00 - 10.30: [RAG - part 1](RAG/exercise1.md)
 * 10.30 - 11.00: Break
 * 11.00 - 11.45: [RAG - part 2](RAG/exercise2.md)
-* 11.45 - 12.15: [How agents talk to tools: Towards MCP](index.md)
+* 11.45 - 12.15: [How agents talk to tools: Towards MCP](MCP/index.md)
 
 ### Part 2: Guardrails, RAG and Threat Modelling
-* 14.00 - 15.15: [Open WebUI: Functions and UI customization](index.md)
+* 14.00 - 15.15: [Open WebUI: Functions and UI customization](functions/index.md)
 * 15.15 - 15.30: Prompt injection
 * 15.30 - 16.00: Break
 * 16.00 - 16.45: Guardrails selection, implementation, testing and fine-tuning
