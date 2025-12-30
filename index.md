@@ -13,14 +13,14 @@ Alexander Sternfeld, Dr. Elena Nazarenko, Prof. Dr. Aygul Zagidullina, Gaetan St
 
 ### Part 1: My First LLM App, Intro to RAG
 * 09.30 - 09.40: Introduction
-* 09.40 - 10.00: Setting up your Open WebUI
-* 10.00 - 10.30: RAG - part 1
+* 09.40 - 10.00: [Setting up your Open WebUI](setup/index.md)
+* 10.00 - 10.30: [RAG - part 1](RAG/exercise1.md)
 * 10.30 - 11.00: Break
-* 11.00 - 11.45: RAG - part 2
-* 11.45 - 12.15: How agents talk to tools: Towards MCP
+* 11.00 - 11.45: [RAG - part 2](RAG/exercise2.md)
+* 11.45 - 12.15: [How agents talk to tools: Towards MCP](index.md)
 
 ### Part 2: Guardrails, RAG and Threat Modelling
-* 14.00 - 15.15: Open WebUI: Functions and UI customization
+* 14.00 - 15.15: [Open WebUI: Functions and UI customization](index.md)
 * 15.15 - 15.30: Prompt injection
 * 15.30 - 16.00: Break
 * 16.00 - 16.45: Guardrails selection, implementation, testing and fine-tuning
