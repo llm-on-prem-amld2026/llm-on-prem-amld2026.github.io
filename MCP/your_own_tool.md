@@ -207,7 +207,7 @@ def ollama_generate(
 <details>
 <summary>Show solution</summary>
 
-<pre><code class="language-python">
+```python
 import requests
 from fastmcp import FastMCP
 
@@ -303,8 +303,7 @@ def get_weather(city: str):
 
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
-    
-</code></pre>
+```
 
 </details>
 
