@@ -24,20 +24,463 @@ You do not need to complete all of them—focus on the ones that best match your
 * [Visualizing a response from a LLM](https://openwebui.com/posts/4319b6c2-5070-43e4-8310-738cd70ae61f)
 * [Convert LLM responses in markdown to Word documents](https://openwebui.com/posts/76716d12-5896-4698-a4ac-62fa23dd7251)
 
-The template of an action function is as follows:
+In this exercise, we will start from 
+
+{: .action}
+> 1. First experiment with the 
+> 1. Add the option to instruct the model to provide key points and/or action items. _Hint: you need to add a user valve, and append an instruction to the prompt depending on the setting of the valve._
+
 
 ```python
+from pydantic import BaseModel, Field
+from typing import Optional, Literal
+import json
+import aiohttp
+import asyncio
+
 class Action:
+    class Valves(BaseModel):
+        # LLM Provider Configuration
+        llm_provider: Literal["openai", "ollama"] = Field(
+            default="ollama",
+            description="LLM provider to use (openai or ollama)",
+        )
+
+        # API Configuration
+        api_base_url: str = Field(
+            default="https://api.openai.com/v1",
+            description="Base URL for the LLM API (e.g., https://api.openai.com/v1, http://localhost:11434/api for Ollama)",
+        )
+        api_key: str = Field(
+            default="",
+            description="API key for authentication (not needed for local Ollama)",
+        )
+        model_name: str = Field(
+            default="llama3.1:8b",
+            description="Model name (e.g. llama3.1:8b)",
+        )
+
+        # Request Configuration
+        temperature: float = Field(
+            default=0.3,
+            description="Temperature for response generation (0.0-1.0) - lower for more focused summaries",
+        )
+        max_tokens: int = Field(default=500, description="Maximum tokens in response")
+        timeout: int = Field(default=30, description="Request timeout in seconds")
+
+    class UserValves(BaseModel):
+        show_status: bool = Field(
+            default=True, description="Show status messages during processing"
+        )
+        summary_style: Literal[
+            "bullet", "paragraph", "tldr", "executive", "academic"
+        ] = Field(
+            default="bullet",
+            description="Style of summary (bullet points, paragraph, TL;DR, executive, academic)",
+        )
+        summary_length: Literal["ultra-short", "short", "medium", "detailed"] = Field(
+            default="short", description="Length of summary"
+        )
+        output_format: Literal[
+            "styled_section",
+            "quote_block",
+            "code_block",
+            "floating_card",
+            "separator_line",
+        ] = Field(
+            default="styled_section",
+            description="How to display the summary: styled section, quote block, code block, floating card, or simple separator",
+        )
+        show_metrics: bool = Field(
+            default=True, description="Show compression metrics and statistics"
+        )
+
+        ##### HERE YOU CAN ADD MORE USER VALVES #####
+
     def __init__(self):
         self.valves = self.Valves()
 
-    class Valves(BaseModel):
-        # Configuration parameters
-        parameter_name: str = "default_value"
+    async def make_llm_request(self, prompt: str, system_prompt: str) -> str:
+        """Make a request to the configured LLM provider"""
 
-    async def action(self, body: dict, __user__=None, __event_emitter__=None, __event_call__=None):
-        # Action implementation
-        return {"content": "Modified message content"}
+        headers = {}
+        data = {}
+
+        # Configure request based on provider
+        if self.valves.llm_provider == "openai":
+            headers = {
+                "Authorization": f"Bearer {self.valves.api_key}",
+                "Content-Type": "application/json",
+            }
+            data = {
+                "model": self.valves.model_name,
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt},
+                ],
+                "temperature": self.valves.temperature,
+                "max_tokens": self.valves.max_tokens,
+            }
+            endpoint = f"{self.valves.api_base_url}/chat/completions"
+
+        elif self.valves.llm_provider == "ollama":
+            headers = {"Content-Type": "application/json"}
+            data = {
+                "model": self.valves.model_name,
+                "prompt": f"{system_prompt}\n\n{prompt}",
+                "temperature": self.valves.temperature,
+                "options": {"num_predict": self.valves.max_tokens},
+                "stream": False,
+            }
+            endpoint = f"{self.valves.api_base_url}/generate"
+
+        else:  # custom
+            # For custom providers, assume OpenAI-compatible API
+            headers = {
+                "Authorization": f"Bearer {self.valves.api_key}",
+                "Content-Type": "application/json",
+            }
+            data = {
+                "model": self.valves.model_name,
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": prompt},
+                ],
+                "temperature": self.valves.temperature,
+                "max_tokens": self.valves.max_tokens,
+            }
+            endpoint = f"{self.valves.api_base_url}/chat/completions"
+
+        # Make the request
+        timeout = aiohttp.ClientTimeout(total=self.valves.timeout)
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.post(endpoint, headers=headers, json=data) as response:
+                if response.status != 200:
+                    error_text = await response.text()
+                    raise Exception(f"LLM API error ({response.status}): {error_text}")
+
+                result = await response.json()
+
+                # Extract content based on provider
+                if (
+                    self.valves.llm_provider == "openai"
+                    or self.valves.llm_provider == "custom"
+                ):
+                    return result["choices"][0]["message"]["content"]
+
+                elif self.valves.llm_provider == "ollama":
+                    return result["response"]
+
+        return "Could not generate summary"
+
+    def get_length_instruction(self, length: str) -> str:
+        """Get length instruction based on user preference"""
+        length_map = {
+            "ultra-short": "1-2 sentences maximum",
+            "short": "3-5 sentences",
+            "medium": "1-2 paragraphs",
+            "detailed": "comprehensive with multiple paragraphs",
+        }
+        return length_map.get(length, "3-5 sentences")
+
+    def get_style_format(self, style: str) -> str:
+        """Get format instruction based on style preference"""
+        style_formats = {
+            "bullet": """Format as bullet points:
+• Main point 1
+• Main point 2
+• Main point 3""",
+            "paragraph": "Format as a flowing paragraph with complete sentences.",
+            "tldr": "Format as 'TL;DR: [one sentence summary]'",
+            "executive": """Format as an executive summary with sections:
+**Overview:** [brief context]
+**Key Points:** [main findings]
+**Recommendations:** [if applicable]""",
+            "academic": """Format as an academic abstract with:
+**Purpose:** [main objective]
+**Findings:** [key results]
+**Implications:** [significance]""",
+        }
+        return style_formats.get(style, style_formats["bullet"])
+
+    async def action(
+        self,
+        body: dict,
+        __user__=None,
+        __event_emitter__=None,
+        __event_call__=None,
+    ) -> Optional[dict]:
+        print(f"action:{__name__}")
+
+        # Check if API is configured
+        if not self.valves.api_key and self.valves.llm_provider in [
+            "openai",
+            "anthropic",
+        ]:
+            if __event_emitter__:
+                await __event_emitter__(
+                    {
+                        "type": "status",
+                        "data": {
+                            "description": "❌ Please configure API key in settings",
+                            "done": True,
+                        },
+                    }
+                )
+            return None
+
+        user_valves = (
+            __user__.get("valves", self.UserValves()) if __user__ else self.UserValves()
+        )
+
+        # Get the message to summarize
+        messages = body.get("messages", [])
+        if not messages:
+            if __event_emitter__:
+                await __event_emitter__(
+                    {
+                        "type": "status",
+                        "data": {
+                            "description": "No message found to summarize",
+                            "done": True,
+                        },
+                    }
+                )
+            return None
+
+        # Get the last message or combine multiple messages
+        message_to_summarize = messages[-1].get("content", "")
+
+        # Option to summarize entire conversation
+        if len(messages) > 1:
+            # Check if user wants to summarize the whole conversation
+            conversation_context = "\n\n".join(
+                [
+                    f"{msg.get('role', 'user').upper()}: {msg.get('content', '')}"
+                    for msg in messages[-5:]  # Last 5 messages for context
+                ]
+            )
+            if len(conversation_context) > len(message_to_summarize) * 2:
+                message_to_summarize = conversation_context
+
+        if not message_to_summarize:
+            if __event_emitter__:
+                await __event_emitter__(
+                    {
+                        "type": "status",
+                        "data": {"description": "Message is empty", "done": True},
+                    }
+                )
+            return None
+
+        # Show processing status
+        if user_valves.show_status and __event_emitter__:
+            status_emoji = {
+                "bullet": "📋",
+                "paragraph": "📄",
+                "tldr": "⚡",
+                "executive": "💼",
+                "academic": "🎓",
+            }
+            await __event_emitter__(
+                {
+                    "type": "status",
+                    "data": {
+                        "description": f"{status_emoji.get(user_valves.summary_style, '📝')} Creating {user_valves.summary_length} summary...",
+                        "done": False,
+                    },
+                }
+            )
+
+        # Create the system prompt
+        system_prompt = """You are an expert summarizer who creates clear, concise, and accurate summaries. 
+        Focus on the most important information and maintain the original meaning."""
+
+        # Create the summary prompt
+        length_instruction = self.get_length_instruction(user_valves.summary_length)
+        style_format = self.get_style_format(user_valves.summary_style)
+
+        summary_sections = [
+            f"📝 **Summary** ({user_valves.summary_style} style, {length_instruction}):"
+        ]
+
+        ##### HERE YOU CAN ADD MORE SECTIONS DEPENDING ON A VALVE #####
+
+        summary_prompt = f"""Please summarize the following text.
+
+Requirements:
+1. Length: {length_instruction}
+2. Style: {style_format}
+3. Be accurate and capture the main ideas
+4. Maintain objectivity
+5. Use clear, concise language
+
+Text to summarize:
+"{message_to_summarize}"
+
+Format your response with these sections:
+{''.join(summary_sections)}"""
+
+        try:
+            # Make the LLM request
+            summary = await self.make_llm_request(summary_prompt, system_prompt)
+
+            # Calculate compression ratio
+            original_length = len(message_to_summarize.split())
+            summary_length = len(summary.split())
+            compression_ratio = round((1 - summary_length / original_length) * 100, 1)
+
+            # Format the output based on user preference
+            output_content = ""
+
+            if user_valves.output_format == "styled_section":
+                # Styled section with clear separation
+                output_content = f"""
+═══════════════════════════════════════
+📝 **SMART SUMMARY** 📝
+═══════════════════════════════════════
+
+{summary}
+
+═══════════════════════════════════════
+{f'📊 **Metrics:** {compression_ratio}% compression | {user_valves.summary_style} style | {original_length} → {summary_length} words' if user_valves.show_metrics else ''}
+"""
+
+            elif user_valves.output_format == "quote_block":
+                # Put in a quote block with header
+                output_content = f"""
+### 📝 Smart Summary ({user_valves.summary_style.title()} Style)
+
+> {summary}
+
+{f'📊 *Compressed by {compression_ratio}% ({original_length} → {summary_length} words)*' if user_valves.show_metrics else ''}
+"""
+
+            elif user_valves.output_format == "code_block":
+                # Put in a code block (useful for preserving formatting)
+                output_content = f"""
+### 📝 Smart Summary ({user_valves.summary_style.title()} Style)
+
+```text
+{summary}
+```
+
+{f'📊 *Compressed by {compression_ratio}% ({original_length} → {summary_length} words)*' if user_valves.show_metrics else ''}
+"""
+
+            elif user_valves.output_format == "floating_card":
+                # Card style with clear borders and spacing
+                output_content = (
+                    f"""
+╭─────────────────────────────────────╮
+│  📝 **SMART SUMMARY** 📝           │
+╰─────────────────────────────────────╯
+
+{summary}
+
+╭─────────────────────────────────────╮
+│ 📊 {compression_ratio}% COMPRESSION              │
+│ 📝 {original_length} → {summary_length} words                │
+│ 🎯 {user_valves.summary_style.upper()} STYLE               │
+│ 📏 {user_valves.summary_length.upper()} LENGTH             │
+╰─────────────────────────────────────╯
+"""
+                    if user_valves.show_metrics
+                    else f"""
+╭─────────────────────────────────────╮
+│  📝 **SMART SUMMARY** 📝           │
+╰─────────────────────────────────────╯
+
+{summary}
+
+╭─────────────────────────────────────╮
+│  {user_valves.summary_style.upper()} STYLE - {user_valves.summary_length.upper()} LENGTH    │
+╰─────────────────────────────────────╯
+"""
+                )
+
+            elif user_valves.output_format == "separator_line":
+                # Simple separator format
+                output_content = f"""
+---
+
+**[Smart Summary - {user_valves.summary_style.title()} Style, {user_valves.summary_length.title()} Length]**
+
+{summary}
+
+---
+{f'_Compressed by {compression_ratio}% ({original_length} → {summary_length} words)_' if user_valves.show_metrics else ''}
+"""
+
+            # Emit the result
+            if __event_emitter__:
+                # Update status
+                if user_valves.show_status:
+                    await __event_emitter__(
+                        {
+                            "type": "status",
+                            "data": {
+                                "description": f"✨ Summary created! ({compression_ratio}% shorter)",
+                                "done": True,
+                            },
+                        }
+                    )
+
+                # Add the summary as a new message
+                await __event_emitter__(
+                    {
+                        "type": "message",
+                        "data": {
+                            "content": output_content,
+                            "role": "assistant",
+                            "metadata": {
+                                "source": "Smart Summarizer Enhanced",
+                                "original_length": original_length,
+                                "summary_length": summary_length,
+                                "compression_ratio": compression_ratio,
+                                "style": user_valves.summary_style,
+                                "length": user_valves.summary_length,
+                                "output_format": user_valves.output_format,
+                                "model_used": self.valves.model_name,
+                                "provider": self.valves.llm_provider,
+                            },
+                        },
+                    }
+                )
+
+        except Exception as e:
+            print(f"Error generating summary: {str(e)}")
+            if __event_emitter__:
+                await __event_emitter__(
+                    {
+                        "type": "status",
+                        "data": {
+                            "description": "❌ Failed to create summary",
+                            "done": True,
+                        },
+                    }
+                )
+
+                # Provide error details
+                await __event_emitter__(
+                    {
+                        "type": "citation",
+                        "data": {
+                            "source": {"name": "Error"},
+                            "document": [f"Failed to generate summary: {str(e)}"],
+                            "metadata": [
+                                {
+                                    "source": "Smart Summarizer Action Enhanced",
+                                    "provider": self.valves.llm_provider,
+                                    "model": self.valves.model_name,
+                                    "api_url": self.valves.api_base_url,
+                                }
+                            ],
+                        },
+                    }
+                )
+
+        return None
 ```
 
 ## Exercise 2: Adding Valves to Your Filters
