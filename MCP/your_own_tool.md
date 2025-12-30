@@ -30,11 +30,6 @@ In this exercise, you will add more functionalities to the MCP for a user databa
 <summary>Show solution</summary>
 
 ```python
-def __init__(self):
-    self.valves = self.Valves()
-```
-
-<pre><code class="language-python">
 @mcp.tool
 def count_by_age_and_job(min_age: int, max_age: int, keyword: str):
     """
@@ -145,7 +140,7 @@ def random_sample(n: int = 5, gender: str = None):
         "count": sample_size,
         "users": users,
     }
-</code></pre>
+```
 
 </details>
 
