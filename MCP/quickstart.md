@@ -42,6 +42,14 @@ Next, we will write a simple Python script that creates an MCP server and expose
 > 2. Copy the code below into the file, and exit and save through `ctrl+X` followed by `y`
 > 3. Run your tool server through the command `python tools.py`
 
+{: .tip}
+> Executing the command `python tools.py` will block your terminal as you will now see the tool server running. In order to still be able to do other things on your server, you have (among others) the following two options:
+>     * You can open a second terminal and log onto your server a second time
+>     * You can start a tmux session before execute the command `python tools.py`. With [tmux](https://tmuxcheatsheet.com/), you can have a process running in the background (in this case the tool server).
+>         - Start a tmux session with `tmux new-session -s mcp`
+>         - Start the tool server with `python tools.py`, then detach from the session with `ctrl + b, s`
+>         - When you want to re-attach to the tmux session, you can use `tmux attach`
+
 ```python
 # fastmcp_user_tools_descriptive.py
 from fastmcp import FastMCP
