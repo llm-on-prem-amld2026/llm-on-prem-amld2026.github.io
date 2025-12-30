@@ -32,8 +32,9 @@ In this exercise, we will work on an action function allowing the user to summar
 >     - Remaining in the functions tab of the admin panel, and through the valves of the function, change the `Api Base Url` to `http://ollama:11434/api`.
 >     - Then, ask the LLM a question, and click on the `Summarization` icon below the response at the right.
 > 2. Now, you can explore the functionalities of the action function
->     - Have a look at the     
-> 1. Add the option to instruct the model to provide key points and/or action items. _Hint: you need to add a user valve, and append an instruction to the prompt depending on the setting of the valve._
+>     - Have a look at the different options in the user valves (summary style, summary length, ...), which you can access by clicking on the `controls` at the top right when in a chat, and then selecting > the corresponding valves.
+>     - When does the summarization work well? When does it not perform well?
+> 3. Add the option to instruct the model to provide key points and/or action items. _Hint: you need to add a user valve, and append an instruction to the prompt depending on the setting of the valve._
 
 <details>
 <summary>Show summarization action function code</summary>
