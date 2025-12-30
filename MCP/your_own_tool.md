@@ -16,7 +16,7 @@ Now that you have gained an initial idea of how MCPs work through a simple examp
 >   - Add the type to each of the input variables of the function (e.g. `n: int = 5`, instead of `n = 5`).
 >   - At the beginning of each function, add descriptive documentation. Have a look at the functions in the [Quickstart](quickstart.md) for examples.
 >   - The function should return a descriptive sentence. To illustrate, a function should return _"There are 50 men in the dataset"_, instead of returning _50_, for the LLM to understand what is happening.
-> * If you wish to test a python function, we recommend you to do so locally. This can either be in your IDE of preference (e.g. VSCode), or thro
+> * If you wish to test a python function, we recommend you to do so locally. This can either be in your IDE of preference (e.g. VSCode), or through an online IDE such as [Google Colab](https://colab.research.google.com/). It is recommended to run quick tests to see whether your code is functional, for ease of debugging.  
 > * When launching a tool server, you can use `tmux` to avoid it blocking your terminal, as discussed in the [Quickstart](quickstart.md). Alternatively, you can simply log onto your server again in a second terminal. 
 
 ## Extend the user database MCP
@@ -155,15 +155,15 @@ Before, you made a MCP with tools for analysing a toy CSV data file. Now, you ca
 * **Covid data**: through [this link](https://data.rivm.nl/data/covid-19/COVID-19_aantallen_gemeente_cumulatief.csv), you can obtain data on Covid cases in the Netherlands.
 
 {: .tip}
-> You can download data in a python file by using the `requests` library, of
+> You can download data in a python file by using the `requests` library. For an example, see the code in the [quickstart](quickstart.md). 
 
 ## LLM- or API-powered tools
-The third option is to build a MCP server with LLM-powered tools. You can use the Ollama server that is spinning for your Open WebUI instance to power the tools in your MCP server. Below, you will find a template for the python file that you can use to launch your tool server. Now you can be creative, and construct your own LLM-powered tools. If you would like some inspiration, below are several options. We recommend you to try to independently go through these exercises. When you want, you can view the solution for each of the suggested tools below the template. 
+The third option is to build a MCP server with LLM-powered tools. You can use the Ollama server that is spinning for your Open WebUI instance to power the tools in your MCP server. Below, you will find a template for the python file that you can use to launch your tool server. Now is the time to be creative, and construct your own LLM-powered tools. If you would like some inspiration, below are several options. For the first two cases, we provide a solution below. 
 
-* Compose a tool chaining multiple LLM calls, such as first summarizing a piece of text and then rewriting it in a specific style (e.g. humorous).
-* Compose a tool that verifies whether the prompt violates pre-specified guidelines. 
-* Compose a tool for getting the weather forecast in a specific city, using [this API](https://github.com/chubin/wttr.in), where we suggest to use the JSON output format of the API.
-
+* Compose a tool chaining multiple LLM calls, such as first summarizing a piece of text and then rewriting it in a specific style (e.g. humorous). **Solution available below**
+* Compose a tool for getting the weather forecast in a specific city, using [this API](https://github.com/chubin/wttr.in), where we suggest to use the JSON output format of the API. **Solution available below**
+* Compose a tool that gets live sports data, through an API endpoint such as [TheSportsDB](https://www.thesportsdb.com/documentation) or [SportsDataIO](https://sportsdata.io/).
+* Compose a tool for verifying whether a text adheres to a pre-specified set of guidelines, such as company guidelines.
 
 ```python
 import requests
@@ -203,4 +203,108 @@ def ollama_generate(
 ######### Tools #############
 # To complete
 ```
+
+<details>
+<summary>Show solution</summary>
+
+<pre><code class="language-python">
+import requests
+from fastmcp import FastMCP
+
+OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
+MODEL = "llama3.1:8b"
+
+# Initialize FastMCP
+mcp = FastMCP("llm-tools-demo", port=8001)
+mcp.settings.host = "0.0.0.0"
+
+def ollama_generate(
+    prompt: str,
+    system: str | None = None,
+    temperature: float = 0.7,
+    max_tokens: int = 512,
+) -> str:
+    payload = {
+        "model": MODEL,
+        "prompt": prompt,
+        "options": {
+            "temperature": temperature,
+            "num_predict": max_tokens,
+        },
+        "stream": False,
+    }
+
+    if system:
+        payload["system"] = system
+
+    response = requests.post(OLLAMA_URL, json=payload, timeout=60)
+    response.raise_for_status()
+
+    return response.json()["response"]
+
+# -----------------------------
+# Summary and rewriting tool
+# -----------------------------
+
+@mcp.tool
+def summarize_and_rewrite_text(text: str, style: str) -> str:
+    """
+    Summarizes a document for downstream use.
+
+    Parameters:
+    - text (str): the text that should be summarized
+    - style (str): the style in which the summary should be rewritten
+
+    Returns:
+    - str: the summary rewritten in the specified style
+    """
+    prompt_summary = f"""
+    Summarize the following text, be concise and stick to the information that is provided in the original text.
+
+    TEXT:
+    {text}
+    """
     
+    summary = ollama_generate(prompt_summary)
+
+    prompt_rephrase = f"""
+    Rewrite the following text, such that it adheres to the following style: {style}. 
+
+    TEXT:
+    {summary}
+    """
+
+    rewritten_summary = ollama_generate(prompt_rephrase)
+
+    return f"The summary of the document, rewritten in the style {style}, is: {rewritten_summary}"
+
+# -----------------------------
+# Weather tool
+# -----------------------------
+
+@mcp.tool
+def get_weather(city: str):
+    """Returns the current weather for a city."""
+    try:
+        response = requests.get(f"https://wttr.in/{city}?format=j1")
+        data = response.json()
+        current = data["current_condition"][0]
+        return {
+            "city": city,
+            "temperature_C": current["temp_C"],
+            "temperature_F": current["temp_F"],
+            "weather": current["weatherDesc"][0]["value"],
+            "humidity": current["humidity"],
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+# ------------------ Run Server ------------------
+
+if __name__ == "__main__":
+    mcp.run(transport="streamable-http")
+    
+</code></pre>
+
+</details>
+
