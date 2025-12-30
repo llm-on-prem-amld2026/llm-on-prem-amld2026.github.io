@@ -24,12 +24,19 @@ You do not need to complete all of them—focus on the ones that best match your
 * [Visualizing a response from a LLM](https://openwebui.com/posts/4319b6c2-5070-43e4-8310-738cd70ae61f)
 * [Convert LLM responses in markdown to Word documents](https://openwebui.com/posts/76716d12-5896-4698-a4ac-62fa23dd7251)
 
-In this exercise, we will start from 
+In this exercise, we will work on an action function allowing the user to summarize the initial LLM response. Below, you will find a base version of the action function.
 
 {: .action}
-> 1. First experiment with the 
+> 1. First, set up the base version of the action function in your Open WebUI instance.
+>     - Add the function through the functions tab of the admin panel, save it, and through the `•••` option enable it globally.
+>     - Remaining in the functions tab of the admin panel, and through the valves of the function, change the `Api Base Url` to `http://ollama:11434/api`.
+>     - Then, ask the LLM a question, and click on the `Summarization` icon below the response at the right.
+> 2. Now, you can explore the functionalities of the action function
+>     - Have a look at the     
 > 1. Add the option to instruct the model to provide key points and/or action items. _Hint: you need to add a user valve, and append an instruction to the prompt depending on the setting of the valve._
 
+<details>
+<summary>Show summarization action function code</summary>
 
 ```python
 from pydantic import BaseModel, Field
