@@ -479,6 +479,8 @@ Format your response with these sections:
 
         return None
 ```
+</details>
+
 
 ## Exercise 2: Adding Valves to Your Filters
 
