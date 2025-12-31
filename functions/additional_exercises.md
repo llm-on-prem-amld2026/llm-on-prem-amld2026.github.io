@@ -38,7 +38,7 @@ In this exercise, we will work on an action function allowing the user to summar
 >        - Add another possible style of the summarization to the options. For example, a humoristic summary or an extremely detailed summary.
 >        - Add the option to instruct the model to provide key points and/or action items. _Hint: you need to add a user valve, and append an instruction to the prompt, >          depending on the setting of the valve._
 
-<details>
+<details markdown="1">
 <summary>Show summarization action function code</summary>
 
 ```python
