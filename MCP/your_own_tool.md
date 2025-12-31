@@ -26,7 +26,7 @@ In this exercise, you will add more functionalities to the MCP for a user databa
 * For a given e-mail domain, count the number of men and women using this domain.
 * Get a random sample of users from the dataset.
 
-<details>
+<details markdown="1">
 <summary>Show solution</summary>
 
 ```python
@@ -204,7 +204,7 @@ def ollama_generate(
 # To complete
 ```
 
-<details>
+<details markdown="1">
 <summary>Show solution</summary>
 
 ```python
