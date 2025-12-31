@@ -92,7 +92,6 @@ class Action:
         output_format: Literal[
             "styled_section",
             "quote_block",
-            "code_block",
             "floating_card",
             "separator_line",
         ] = Field(
@@ -360,18 +359,6 @@ Format your response with these sections:
 ### 📝 Smart Summary ({user_valves.summary_style.title()} Style)
 
 > {summary}
-
-{f'📊 *Compressed by {compression_ratio}% ({original_length} → {summary_length} words)*' if user_valves.show_metrics else ''}
-"""
-
-            elif user_valves.output_format == "code_block":
-                # Put in a code block (useful for preserving formatting)
-                output_content = f"""
-### 📝 Smart Summary ({user_valves.summary_style.title()} Style)
-
-```text
-{summary}
-```
 
 {f'📊 *Compressed by {compression_ratio}% ({original_length} → {summary_length} words)*' if user_valves.show_metrics else ''}
 """
