@@ -34,7 +34,9 @@ In this exercise, we will work on an action function allowing the user to summar
 > 2. Now, you can explore the functionalities of the action function
 >     - Have a look at the different options in the user valves (summary style, summary length, ...), which you can access by clicking on the `controls` at the top right when in a chat, and then selecting > the corresponding valves.
 >     - When does the summarization work well? When does it not perform well?
-> 3. Add the option to instruct the model to provide key points and/or action items. _Hint: you need to add a user valve, and append an instruction to the prompt depending on the setting of the valve._
+> 3. Now, it is time for you to extend/improve the summarization function. We provide two suggestions, but if you have other ideas to improve the function, feel free to follow those!
+>        - Add another possible style of the summarization to the options. For example, a humoristic summary or an extremely detailed summary.
+>        - Add the option to instruct the model to provide key points and/or action items. _Hint: you need to add a user valve, and append an instruction to the prompt, >          depending on the setting of the valve._
 
 <details>
 <summary>Show summarization action function code</summary>
@@ -96,7 +98,7 @@ class Action:
             "separator_line",
         ] = Field(
             default="styled_section",
-            description="How to display the summary: styled section, quote block, code block, floating card, or simple separator",
+            description="How to display the summary: styled section, quote block, floating card, or simple separator",
         )
         show_metrics: bool = Field(
             default=True, description="Show compression metrics and statistics"
