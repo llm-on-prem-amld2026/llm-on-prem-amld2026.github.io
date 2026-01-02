@@ -61,6 +61,9 @@ We will now build a pipe for code generation with LLMs, that puts a particular f
 > * The valves are the settings that a user can change, in this case the generation mode and the model.
 > * The `pipe` function contains the core logic of our framework. In this case, the automatic evaluation of the code safety.
 
+<details markdown="1">
+<summary>Show Code Safety Pipeline</summary>
+
 ```python
 from typing import Dict, List, Optional, Callable, Any, AsyncGenerator
 from pydantic import BaseModel, Field
@@ -389,3 +392,4 @@ class Pipe:
             {"type": "status", "data": {"description": description, "done": True}}
         )
 ```
+</details>
