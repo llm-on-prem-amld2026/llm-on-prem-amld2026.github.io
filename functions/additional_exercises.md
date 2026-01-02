@@ -484,22 +484,19 @@ Format your response with these sections:
 
 ## Exercise 2: Adding Valves to Your Filters
 
-In Part 1, the PPI filter always redacted detected sensitive information. In practice, users may want more control.
+In Part 1, the PPI filter always redacted detected sensitive information. In practice, you may want to provide users with more control on the behavior of the filter. You can achieve this using **valves**, settings that the user can manage.
 
 ### Goal
 Extend the PPI filter with one or more **valves**, such as:
-- A toggle to enable/disable redaction
-- A “warn only” mode (detect but do not redact)
-- A verbosity level for user warnings
-
-Example ideas:
-- `MODE = "redact" | "warn"
-- `SHOW_WARNING_MESSAGE: bool`
+- A toggle to enable/disable the redaction of PPI
+- A “warn only” mode, in which the user is warned that sensitive information is detected, but it is not redacted.
+- A verbosity level for user warnings, which indicates the severity of the warning.
 
 ### Reflection
 - How do valves turn a function into a reusable *tool* rather than a hard-coded rule?
-- Which settings should be exposed to users, and which should remain internal?
+- Which settings should be exposed and available to users, and which should remain internal?
 
----
+{: .tip}
+> For examples on how to include valves into your function, have a look at some community examples of functions, available [here](https://openwebui.com/?sort=hot). For instance, [this function](https://openwebui.com/posts/65a2ea8f-2a13-4587-9d76-55eea0035cc8) for generating flash cards, or [this function](https://openwebui.com/posts/93efd285-0cd2-4f44-84a1-cf7596bc7bf2) that bypasses model refusals. 
 
 ## Exercise 3: Extending the SafeCoder Agentic Pipeline
