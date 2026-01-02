@@ -506,7 +506,7 @@ The third exercise extends the SafeCoder pipeline we worked on in [part 2](agent
 > Starting from the code in [part 2](agentic.md), you will have to add two things: a function creating the prompt for the new stage, and an addition of the stage in the `pipe` function. Based on the first two stages in the `pipe` function, you can see how to add the third stage in the function. As before, you can debug by using the `logging` module in Python and subsequently inspecting the logs in the docker container. 
 
 <details markdown="1">
-<summary>Show summarization action function code</summary>
+<summary>Show SafeCoder Extension Solution</summary>
 
 ```python
 from typing import Dict, List, Optional, Callable, Any, AsyncGenerator
