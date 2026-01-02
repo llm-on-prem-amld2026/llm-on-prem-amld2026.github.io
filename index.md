@@ -5,7 +5,7 @@ nav_order: 1
 ---
 
 # Welcome! 
-Thank you for choosing to attend (part of) our workshop _Building On-Prem LLM Applications for the Real World._ This website is the backbone of the course, and will provide you with instructions for each of the components. This workshop contains of two parts, where the first one is given in the morning and the second part in the afternoon. We hope you enjoy the workshop and learn plenty!
+Thank you for choosing to attend (part of) our workshop _Building On-Prem LLM Applications for the Real World._ This website is the backbone of the course, and will provide you with instructions for each of the components. This workshop consists of two parts, where the first one is given in the morning and the second part in the afternoon. We hope you enjoy the workshop and learn plenty!
 
 Alexander Sternfeld, Dr. Elena Nazarenko, Prof. Dr. Aygul Zagidullina, Gaetan Stein, Prof. Dr. Andrei Kucharavy
 
