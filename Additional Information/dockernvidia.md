@@ -1,7 +1,7 @@
 ---
-layout: default
-parent: Additional Information
-title: Docker, Cuda and Nvidia drivers
+parent: "Additional Information"
+title: "Docker, Cuda and Nvidia drivers"
+nav_order: 1
 ---
 
 Here you will find additional information on several parts of the workshop.
