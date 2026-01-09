@@ -6,7 +6,7 @@ nav_order: 2
 Now that you have set up your machine, we can continue to launching our Open WebUI instance. 
 
 ## Launching our Open WebUI instance
-We will set up an [Open WebUI](https://openwebui.com/) instance, with LLMs running through [Ollama](https://ollama.com/). We will run both services through Docker, which leads to a **robust** and **replicable** architecture. If you want to learn more about Open WebUI, Ollama and Docker, we provide additional information in this Section. For now, we recommend you to continue with the set-up. We will need the following commands:
+We will set up an [Open WebUI](https://openwebui.com/) instance, with LLMs running through [Ollama](https://ollama.com/). TWO SENTENCES ABOUT OLLAMA AND DOCKER. We will run both services through Docker, which leads to a **robust** and **replicable** architecture. If you want to learn more about Open WebUI and Ollama and Docker, we provide additional information in [this section](Additional_Information/openwebui.md). For now, we recommend you to continue with the set-up. We will need the following commands:
 
 | Command        | Function          | 
 |:-------------|:------------------|
