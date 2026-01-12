@@ -54,8 +54,8 @@ A filter contains the following components:
 ## Adding your function to Open WebUI
 We will now add a filter function to our Open WebUI instance, which filters the user input for Private Personal Information (PPI). Below, you will find the instructions for adding and using the filter, and the python code for the filter. The code is explained in detail in the [additional information](<../Additional Information/functions.md>). 
 
-
 We start by adding our function to our Open WebUI instance. This is done through the admin panel, where all the settings are. 
+
 {: .action}
 > 1. In your Open WebUI instance, go to `admin panel` -> `functions`. In the top right, click on `+ New Function`.
 > 2. Give the function a name (e.g. "PPI filter) and a description. Then copy-paste the function below, and save the function.
@@ -145,6 +145,7 @@ class Filter:
 ![](../assets/images/enable_globally.png)
 
 Now that we have set up the function, we can use it in chat!
+
 {: .action}
 > You can start a new chat, and enable the filter by hovering on the `integrations` button in the chat (see image below). You can try a few prompts, to experiment with > the functioning of the filter. Below are a few examples you could try:
 >     * _Please explain to me what a private SSH key is, my SSH key is:
