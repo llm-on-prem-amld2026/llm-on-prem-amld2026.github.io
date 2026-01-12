@@ -87,3 +87,5 @@ You are limited to XXXX GB of memory (RAM). Make sure to not load too many model
 
 ## Next step
 Now that you have set up your Open WebUI instance, we can start exploring all different functionalities, take some time to browse around! The next part of the workshop will be [RAG](RAG/exercise.md).
+
+_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)_
