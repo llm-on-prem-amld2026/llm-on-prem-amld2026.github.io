@@ -56,3 +56,5 @@ By using the arrow up key, you can quickly use a previous command again. For exa
 
 ## Next step
 When you are done with setting up your machine, you can continue to launching your own Open WebUI instance. This is explained in the [next page](openwebui.md).
+
+_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)_
