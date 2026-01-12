@@ -5,14 +5,14 @@ nav_order: 1
 
 Welcome to our workshop. During this workshop, we will work on a dedicated remote compute instance so everyone has the same, clean environment with sufficient CPU/GPU resources, independent of their personal laptop setup. All instances run Ubuntu 24.04, a modern long-term support (LTS) Linux distribution that is widely used in production and provides excellent support for Docker, GPUs, and machine learning tooling.
 
-The first step is to connect to your own compute instance, provided to you by [Exoscale](https://www.exoscale.com/?utm_source=google&utm_medium=cpc&utm_campaign=eu-en-b-exoscale&utm_term=exoscale&gad_source=1&gad_campaignid=12788996154&gbraid=0AAAAACltiW5lUzUBRaS7Au0ZZINQu2kbU&gclid=CjwKCAiA3L_JBhAlEiwAlcWO52vJFNpgN7y3rlQZJUXoVoxIslviqV2--jvcB-LyM_P0iNqR_YCvMRoCy9sQAvD_BwE). Make sure that you have **picked up a paper with an (IP, password) combination from the workshop organizers.** 
+The first step is to connect to your own compute instance, provided to you by [Exoscale](https://www.exoscale.com/?utm_source=google&utm_medium=cpc&utm_campaign=eu-en-b-exoscale&utm_term=exoscale&gad_source=1&gad_campaignid=12788996154&gbraid=0AAAAACltiW5lUzUBRaS7Au0ZZINQu2kbU&gclid=CjwKCAiA3L_JBhAlEiwAlcWO52vJFNpgN7y3rlQZJUXoVoxIslviqV2--jvcB-LyM_P0iNqR_YCvMRoCy9sQAvD_BwE). Make sure that you have **picked up a paper with an (IP, password) combination from the workshop organizers.** Throughout the set-up, there will be sections where you have to fill in your IP. We indicate this with `<YOURIP>`, which you should then replace with the IP that is on your paper.
 
 ## Connecting to the machine through SSH
 We will now connect to our machine through SSH. SSH (Secure Shell) is a standard protocol that allows you to securely access and control a remote machine through the command line. In production environments, SSH key-based authentication is strongly recommended, but for simplicity and ease of onboarding during this workshop we will use password-based authentication.
 
 {: .action}
 > 1. Open a terminal of your preference: powershell, command prompt, zsh, ...
-> 2. Connect to your machine with the command `ssh YOURIP@ubuntu`, where you enter the IP that is given to you
+> 2. Connect to your machine with the command `ssh <YOURIP>@ubuntu`, where you enter the IP that is given to you
 > 3. Enter the password, and connect!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/m5I15UTNp6Y?si=fbFOFsXy8SV8SOKe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
