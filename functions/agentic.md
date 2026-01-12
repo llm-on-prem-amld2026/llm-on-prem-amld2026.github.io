@@ -393,3 +393,6 @@ class Pipe:
         )
 ```
 </details>
+
+## What is next?
+If there is time remaining, you can have a look at the [additional exercises](additional_exercises.md) that we have constructed. Here, you can deepen your understanding of applications of functions in Open WebUI.
