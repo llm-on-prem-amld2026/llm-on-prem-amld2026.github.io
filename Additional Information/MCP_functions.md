@@ -1,7 +1,14 @@
+---
+parent: "Additional Information"
+title: "MCP tool code"
+nav_order: 4
+---
 
+## MCP tool code
+In the [MCP quickstart](../MCP/quickstart.md) you saw the implementation of a tool for the analysis of a small CSV file. Here, we explain the code in more detail. 
 
-## Additional information: explanation of MCP tool code for CSV file analysis
-We will now explain the code that is used for the tool server, and explain it block by block. 
+### Code explanation
+We will now explain the code that is used for the tool server, as seen in the [section on MCPs](../MCP/quickstart.md) and explain it block by block. 
 
 First, we import all the necessary libraries
 ```python
@@ -85,3 +92,5 @@ Now we launch the server! We set the mode to _streamable-http_, meaning that the
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
 ```
+
+_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)
