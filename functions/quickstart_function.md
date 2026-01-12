@@ -154,3 +154,6 @@ Now that we have set up the function, we can use it in chat!
 >     * _I am setting up some code using the kaggle api, I’m not sure how to request data from kaggle. My api key is: api_key=dajksfieu34ndsadsae_
 
 ![](../assets/images/integration.png)
+
+## What is next?
+Now that you understand the basics of functions, we can move onto a more complex setting: **agentic frameworks**. In the [next section](agentic.md), you will set up an agentic framework for secure coding with LLMs.
