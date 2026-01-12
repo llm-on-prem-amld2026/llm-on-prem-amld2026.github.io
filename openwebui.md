@@ -72,10 +72,10 @@ services:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fTbv9woR-F8?si=-7UyDPDZJy4kR06b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Accessing the Open WebUI instance
-Now we can access our Open WebUI instance at the following address: `http://YOURIP/3000`. Here, you can set up your login credentials, and start your first chat.
+Now we can access our Open WebUI instance at the following address: `http://<YOURIP>/3000`. Here, you can set up your login credentials, and start your first chat.
 
 {: .action}
-> 1. Access your Open WebUI instance at `http://YOURIP:3000/`, and set up your login details. 
+> 1. Access your Open WebUI instance at `http://<YOURIP>:3000/`, and set up your login details. 
 > 2. Load a model from [Ollama](https://ollama.com/search), by clicking on the model selection button, entering the name, and choosing _Pull from Ollama.com_ We recommend for a short test the model `llama3.1:8b`.
 > 3. Take a few minutes to browse through the Open WebUI interface. What kind of options can you discover?
 
