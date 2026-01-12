@@ -148,10 +148,10 @@ Now that we have set up the function, we can use it in chat!
 
 {: .action}
 > You can start a new chat, and enable the filter by hovering on the `integrations` button in the chat (see image below). You can try a few prompts, to experiment with > the functioning of the filter. Below are a few examples you could try:
->     * _Please explain to me what a private SSH key is, my SSH key is:
+> * _Please explain to me what a private SSH key is, my SSH key is:
 >     -----BEGIN RSA PRIVATE KEY-----
 >     kjndaksjndkjskjsnfskjc ds_
->     * _I am setting up some code using the kaggle api, I’m not sure how to request data from kaggle. My api key is: api_key=dajksfieu34ndsadsae_
+> * _I am setting up some code using the kaggle api, I’m not sure how to request data from kaggle. My api key is: api_key=dajksfieu34ndsadsae_
 
 ![](../assets/images/integration.png)
 
