@@ -20,10 +20,11 @@ We can now set up and launch our Open WebUI instance.
 > 1. Create the directory for openwebui: `mkdir openwebui`
 > 2. Move into the openwebui directory: `cd openwebui`
 > 3. Create the docker compose file: `nano docker-compose.yaml`, and paste the code below. You can then save the file with `ctrl O + enter`, and exit nano with `ctrl X`. These steps are displayed in the image below.
-> 4. Now you can start both Ollama and Open WebUI by running `sudo docker compose up -d`
-> 5. Verify with `sudo docker ps` that both containers run well
 
-![](assets/images/nano.png)
+![](assets/images/nano.jpg)
+
+{: .action}
+Now that we have set up the docker compose file, we are ready to launch our Open WebUI instance. The only thing you have to do is enter the command `sudo docker compose up -d`, which spins up the container in the background. Make sure you are in the openwebui folder when executing the command. After the containers have started, you can verify that they are running with `sudo docker ps`. You can inspect the logs with `sudo docker logs ollama` and `sudo docker logs open-webui`.
 
 ```yaml
 services:
@@ -77,7 +78,7 @@ Now we can access our Open WebUI instance at the following address: `http://<YOU
 {: .action}
 > 1. Access your Open WebUI instance at `http://<YOURIP>:3000/`, and set up your login details. 
 > 2. Load a model from [Ollama](https://ollama.com/search), by clicking on the model selection button, entering the name, and choosing _Pull from Ollama.com_ We recommend for a short test the model `llama3.1:8b`.
-> 3. Take a few minutes to browse through the Open WebUI interface. What kind of options can you discover?
+> Congrats! You have now set up your very own LLM interface! Take some time to look around and explore the possibilities.
 
 {: .warning}
 You are limited to XXXX GB of memory (RAM). Make sure to not load too many models simultaneously, otherwise you may overload this memory. If you want to remove a model, you can do so by going to the admin panel > settings > connections. Here, next to `http://ollama:11434`, you will see a "manage" button, where you can delete models. 
