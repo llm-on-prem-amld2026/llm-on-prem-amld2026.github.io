@@ -93,4 +93,4 @@ if __name__ == "__main__":
     mcp.run(transport="streamable-http")
 ```
 
-_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)
+_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)_
