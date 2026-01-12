@@ -9,13 +9,11 @@ In the previous sections, you learned how to:
 - Use **filter functions** to intercept and modify user input and model output
 - Build **pipe functions** to construct agentic workflows with multiple LLM calls
 
-In this final part of the workshop, you will deepen your understanding by:
-- Exploring **action functions**
-- Using **valves** as user-configurable controls
-- Extending agentic pipelines with additional reasoning steps
-- Reflecting on design trade-offs in agentic systems
+We now provide you with several different exercises to deepen your understanding and explore different applications. There is most likely insufficient time to do all exercises, hence we recommend you to choose the one that seems most interesting to you. For exercises 1 and 3, a solution is provided. 
 
-You do not need to complete all of them—focus on the ones that best match your interests and available time. For exercise 1 and 3, a solution is available.
+1. [Exploring **action functions**](#exercise-1-building-an-action-function)
+2. [Using **valves** as user-configurable controls](#exercise-2-adding-valves-to-your-filters)
+3. [Extending the agentic coding pipeline with a code patching step.](exercise-3-extending-the-safecoder-agentic-pipeline)
 
 ## Exercise 1: Building an Action Function
 [Action Functions](https://docs.openwebui.com/features/plugin/functions/action/) will appear as clickable buttons below the generated response from the LLM. Whereas filter functions automatically execute operations on the input prompt or generated response, action functions need to be manually triggered by a user by clicking on the button below the response from the LLM. Several examples of action functions are:
