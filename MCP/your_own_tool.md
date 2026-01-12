@@ -307,3 +307,4 @@ if __name__ == "__main__":
 
 </details>
 
+_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)_
