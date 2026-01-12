@@ -888,3 +888,5 @@ class Pipe:
 ```
 
 </details>
+
+_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)_
