@@ -52,18 +52,17 @@ A filter contains the following components:
 * **Outlet:** the outlet function is the last part of the pipeline, enabling you to adjust the final LLM output. 
 
 ## Adding your function to Open WebUI
-We will now add a filter function to our Open WebUI instance, which filters the user input for Private Personal Information (PPI). Below, you will find the instructions for adding and using the filter, and the python code for the filter. We recommend you to take a close look at the function definition below to see how it is structured.
+We will now add a filter function to our Open WebUI instance, which filters the user input for Private Personal Information (PPI). Below, you will find the instructions for adding and using the filter, and the python code for the filter. The code is explained in detail in the [additional information](<../Additional Information/functions.md>). 
 
+
+We start by adding our function to our Open WebUI instance. This is done through the admin panel, where all the settings are. 
 {: .action}
-> 1. In your Open WebUI instance, go to `admin panel` -> `functions`
-> 2. In the top right, click on `+ New Function`
-> 3.  Give the function a name (e.g. "PPI filter) and a description. Then copy-paste the function below, and save the function.
-> 4.  Ensure the function is enabled, and click on the `•••` to also enable it globally (see image below).
-> 5.  Now, you can start a new chat, and enable the filter by hovering on the `integrations` button in the chat (see image below). You can try a > few prompts, to experiment with the functioning of the filter. Below are a few examples you could try:
->     * _Please explain to me what a private SSH key is, my SSH key is:
->     -----BEGIN RSA PRIVATE KEY-----
->     kjndaksjndkjskjsnfskjc ds_
->     * _I am setting up some code using the kaggle api, I’m not sure how to request data from kaggle. My api key is: api_key=dajksfieu34ndsadsae_
+> 1. In your Open WebUI instance, go to `admin panel` -> `functions`. In the top right, click on `+ New Function`.
+> 2. Give the function a name (e.g. "PPI filter) and a description. Then copy-paste the function below, and save the function.
+> 3. From the `functions` tab in the `admin panel`, make sure that the function is toggled on.Then, by   click on the `•••` to also enable it globally (see image below).
+
+<details markdown="1">
+<summary>Show filter code</summary>
 
 ```python
 import re
@@ -141,3 +140,16 @@ class Filter:
                 ] += "\n\n **Note: Sensitive information has been redacted from the user's input.**"
         return body
 ```
+</details>
+
+![](../assets/images/enable_globally.png)
+
+Now that we have set up the function, we can use it in chat!
+{: .action}
+> You can start a new chat, and enable the filter by hovering on the `integrations` button in the chat (see image below). You can try a few prompts, to experiment with > the functioning of the filter. Below are a few examples you could try:
+>     * _Please explain to me what a private SSH key is, my SSH key is:
+>     -----BEGIN RSA PRIVATE KEY-----
+>     kjndaksjndkjskjsnfskjc ds_
+>     * _I am setting up some code using the kaggle api, I’m not sure how to request data from kaggle. My api key is: api_key=dajksfieu34ndsadsae_
+
+![](../assets/images/integration.png)
