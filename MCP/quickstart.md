@@ -42,13 +42,9 @@ We will now set up a lightweight tool server using FastMCP. This server will all
 > 1. Open a new Python file with `nano tools.py`
 > 2. Copy the code below into the file, and exit and save through `ctrl + O, enter` followed by `ctrl + X`
 
-Executing the python file would block your terminal, not allowing you to do anything else on the instance. Therefore, we will use `tmux`, which allows you to run multiple terminal sessions inside one window. It allows you to keep processes running in the background and reconnect to them later. If you want to know more about the options in tmux, have a look at [this cheatsheet](https://tmuxcheatsheet.com/).
-
-{: .action}
-> 1. Start a tmux session with `tmux new-session -s mcp`
-> 2. Start the tool server with `python tools.py`, then detach from the session with `ctrl + b, s`
-> When you want to re-attach to the tmux session, you can use `tmux attach`
-
+<details markdown="1">
+<summary>Show tool code</summary>
+    
 ```python
 # fastmcp_user_tools_descriptive.py
 from fastmcp import FastMCP
@@ -120,6 +116,14 @@ def count_by_job_keyword(keyword: str):
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
 ```
+</details>
+
+Executing the python file would block your terminal, not allowing you to do anything else on the instance. Therefore, we will use `tmux`, which allows you to run multiple terminal sessions inside one window. It allows you to keep processes running in the background and reconnect to them later. If you want to know more about the options in tmux, have a look at [this cheatsheet](https://tmuxcheatsheet.com/).
+
+{: .action}
+> 1. Start a tmux session with `tmux new-session -s mcp`
+> 2. Start the tool server with `python tools.py`, then detach from the session with `ctrl + b, s`
+> When you want to re-attach to the tmux session, you can use `tmux attach`
 
 ## Configuring the tools in Open WebUI
 Next, we will connect our tool server to Open WebUI. Follow the steps below to achieve this.
