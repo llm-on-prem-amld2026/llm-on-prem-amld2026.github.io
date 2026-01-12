@@ -11,7 +11,7 @@ We will set up an [Open WebUI](https://openwebui.com/) instance, with LLMs runni
 | Command        | Function          | 
 |:-------------|:------------------|
 | mkdir           | make a directory |
-| nano | create / edit a file   |
+| nano | command-line text editor   |
 | cd           | go into or out of a directory      |
 
 We can now set up and launch our Open WebUI instance.
@@ -19,9 +19,11 @@ We can now set up and launch our Open WebUI instance.
 {: .action}
 > 1. Create the directory for openwebui: `mkdir openwebui`
 > 2. Move into the openwebui directory: `cd openwebui`
-> 3. Create the docker compose file: `nano docker-compose.yaml`, and paste the code below. You can exit and save the file through the commands `ctrl X + Y`
+> 3. Create the docker compose file: `nano docker-compose.yaml`, and paste the code below. You can then save the file with `ctrl O + enter`, and exit nano with `ctrl X`. These steps are displayed in the image below.
 > 4. Now you can start both Ollama and Open WebUI by running `sudo docker compose up -d`
 > 5. Verify with `sudo docker ps` that both containers run well
+
+![](assets/images/nano.png)
 
 ```yaml
 services:
@@ -81,3 +83,6 @@ Now we can access our Open WebUI instance at the following address: `http://YOUR
 You are limited to XXXX GB of memory (RAM). Make sure to not load too many models simultaneously, otherwise you may overload this memory. If you want to remove a model, you can do so by going to the admin panel > settings > connections. Here, next to `http://ollama:11434`, you will see a "manage" button, where you can delete models. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/smPmNy_bcGg?si=LOxC-vHxRPKI_IwA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Next step
+Now that you have set up your Open WebUI instance, we can start exploring all different functionalities, take some time to browse around! The next part of the workshop will be [RAG](RAG/exercise.md).
