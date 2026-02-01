@@ -1,5 +1,5 @@
 ---
 layout: default
-title: Functions and Agentic Workflows
+title: Augmenting LLM Capabilities
 nav_order: 5
 ---
