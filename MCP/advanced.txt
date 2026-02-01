@@ -1,6 +1,6 @@
 ---
-title: "Your own MCP"
-parent: "Model Context Protocol (MCP)"
+title: "Different Tools"
+parent: "Tools and MCP"
 nav_order: 2
 ---
 
