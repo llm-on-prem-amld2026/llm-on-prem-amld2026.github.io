@@ -1,6 +1,6 @@
 ---
 title: "Functions in Open WebUI"
-parent: "Functions and Agentic Workflows"
+parent: "Augmenting LLM Capabilities"
 nav_order: 1
 ---
 
@@ -52,13 +52,13 @@ A filter contains the following components:
 * **Outlet:** the outlet function is the last part of the pipeline, enabling you to adjust the final LLM output. 
 
 ## Adding your function to Open WebUI
-We will now add a filter function to our Open WebUI instance, which filters the user input for Private Personal Information (PPI). Below, you will find the instructions for adding and using the filter, and the python code for the filter. The code is explained in detail in the [additional information](<../Additional Information/functions.md>). 
+We will now add a filter function to our Open WebUI instance, which filters the user input for Private Personal Information (PPI). Below, you will find the instructions for adding and using the filter, and the python code for the filter. The code is explained in detail in the [additional information](<../additional_information/functions.md>). 
 
 We start by adding our function to our Open WebUI instance. This is done through the admin panel, where all the settings are. 
 
 {: .action}
 > 1. In your Open WebUI instance, go to `admin panel` -> `functions`. In the top right, click on `+ New Function`.
-> 2. Give the function a name (e.g. "PPI filter) and a description. Then copy-paste the function below, and save the function.
+> 2. Give the function a name (e.g. "PPI filter) and a description. Then remove the template code that is automatically there, and copy-paste the function below as the code. Then, save the function.
 > 3. From the `functions` tab in the `admin panel`, make sure that the function is toggled on.Then, by   click on the `•••` to also enable it globally (see image below).
 
 <details markdown="1">
@@ -73,7 +73,7 @@ from typing import Tuple, Optional
 SENSITIVE_PATTERNS = {
     "api_key": re.compile(r"(api[_-]?key\s*[:=]\s*[A-Za-z0-9_\-]{16,})", re.IGNORECASE),
     "private_key": re.compile(
-        r"-----BEGIN (RSA|EC|DSA)? ?PRIVATE KEY-----", re.IGNORECASE
+        r"-----BEGIN (RSA|EC|DSA)? ?PRIVATE KEY-----(?:\r?\n.*?){0,2}", re.IGNORECASE
     ),
     "aws_secret": re.compile(
         r"(aws[_-]?secret[_-]?access[_-]?key\s*[:=]\s*[A-Za-z0-9/+=]{40})",
@@ -82,6 +82,7 @@ SENSITIVE_PATTERNS = {
 }
 
 CONTAINS_PPI = False
+
 
 class Filter:
     class Valves(BaseModel):
@@ -97,13 +98,14 @@ class Filter:
         """Redact sensitive information from the text."""
         global CONTAINS_PPI
         detected = False
-        for _, pattern in SENSITIVE_PATTERNS.items():
+        for key, pattern in SENSITIVE_PATTERNS.items():
             if pattern.search(text):
                 detected = True
-            text = pattern.sub(
-                lambda m: m.group(0).split(":")[0] + ": [REDACTED]",
-                text,
-            )
+            if key in ["api_key", "aws_secret"]:
+                text = re.sub(pattern, "[REDACTED]", text)
+            else:  # for private_key
+                # Match the header and the next two lines (if they exist)
+                text = re.sub(pattern, "[REDACTED]", text)
 
         if warn_user and detected:
             CONTAINS_PPI = True
@@ -139,29 +141,26 @@ class Filter:
                     "content"
                 ] += "\n\n **Note: Sensitive information has been redacted from the user's input.**"
         return body
+
 ```
 </details>
 
-![](../assets/images/enable_globally.png)
+![](../assets/function_enable.png)
 
 Now that we have set up the function, we can use it in chat!
 
 {: .action}
 > You can start a new chat, and enable the filter by hovering on the `integrations` button in the chat (see image below). You can try a few prompts to experiment with the functioning of the filter. Below are two examples you could try:
 >
-> * _Please explain to me what a private SSH key is, my SSH key is:_  
->   ```
+> * _Please explain to me what a private SSH key is, my SSH key is:
 >   -----BEGIN RSA PRIVATE KEY-----
->   kjndaksjndkjskjsnfskjc ds
->   ```
->
-> * _I am setting up some code using the Kaggle API, I’m not sure how to request data from Kaggle. My API key is:_  
->   ```
->   api_key=dajksfieu34ndsadsae
->   ```
+>   kjndaksjndkjskjsnfskjc ds_  
+> * _I am setting up some code using the Kaggle API, I’m not sure how to request data from Kaggle. My API key is: 
+> api_key=dajksfieu34ndsadsae_
+>   
 
 
-![](../assets/images/integration.png)
+![](../assets/integration.png)
 
 ## What is next?
 Now that you understand the basics of functions, we can move onto a more complex setting: **agentic frameworks**. In the [next section](agentic.md), you will set up an agentic framework for secure coding with LLMs.
