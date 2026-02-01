@@ -1,4 +1,4 @@
 ---
-title: "Model Context Protocol (MCP)"
+title: "Tools and MCP"
 nav_order: 4
 ---
