@@ -1,6 +1,6 @@
 ---
-title: "Quickstart"
-parent: "Model Context Protocol (MCP)"
+title: "Model Context Protocol (MCP)"
+parent: "Tools and MCP"
 nav_order: 1
 ---
 
@@ -28,9 +28,10 @@ uv venv
 source .venv/bin/activate
 ```
 
-* Step 3: Install the fastmcp package that we will need to launch our MCP server.
+* Step 3: Install the fastmcp package that we will need to launch our MCP server. Additionally, we install pandas as we will need it in the tool we set up.
 ```bash
 uv pip install fastmcp
+uv pip install pandas
 ```
 
 This sets up an isolated Python environment where we can safely install dependencies without affecting the system Python.  
@@ -122,21 +123,24 @@ Executing the python file would block your terminal, not allowing you to do anyt
 
 {: .action}
 > 1. Start a tmux session with `tmux new-session -s mcp`
-> 2. Start the tool server with `python tools.py`, then detach from the session with `ctrl + b, s`
+> 2. Start the tool server with `python tools.py`, then detach from the session with `ctrl + b, d`
 > When you want to re-attach to the tmux session, you can use `tmux attach`
 
 ## Configuring the tools in Open WebUI
-Next, we will connect our tool server to Open WebUI. Follow the steps below to achieve this.
+Next, we will connect our tool server to Open WebUI. Follow the steps below to achieve this, also see the image below for further context.
 
 {: .action}
-> 1. In Open WebUI, go to `Admin panel -> External Tools -> Add Connection`
+> 1. In Open WebUI, go to `Admin panel -> Settings -> External Tools -> + icon next to Manage Tool Servers` 
 > 2. Fill in the fields as follows:
 >     * **Type**: MCP
->     * **URL**: `http://IP:8000/mcp` (replace `IP` with your server's IP address)
+>     * **URL**: `http://<YOURIP>:8000/mcp` (replace `<YOURIP>` with your server's IP address)
+>     * **Auth**: None
 >     * **Headers**: `{"Accept": "application/json, text/event-stream", "Content-Type": "application/json"}`
 >     * **ID**: `tools`
 >     * **Name/Description**: Here you can give the tool server a name and a description
 >     * **Function Name Filter List**: Here we enter the function names, in our case: `count_by_first_name, count_by_job_keyword`
+
+![](../assets/mcp_settings.png)
 
 ## Using the tool in Open WebUI
 Once we configured the tool correctly in the admin settings, we can start to use it in the chat. In the box where you enter the prompt, click on the icon _integrations_, and toggle on your MCP in the tools section. Below are a few prompts you can try out, but feel free to give them your own spin and test the limits of the LLM!
@@ -146,6 +150,6 @@ Once we configured the tool correctly in the admin settings, we can start to use
 > How many men have the first name "Peter"?
 
 ## What's next?
-You now know the basis of MCP servers, if you want to experiment yourself with different types of tools and data, have a look at the [next section](your_own_tool.md).
+You now know the basis of MCP servers, if you want to experiment yourself with different types of tools and data, have a look at the [next section](advanced_api.md).
 
 _Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)_
