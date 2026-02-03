@@ -4,8 +4,9 @@ parent: "Powering LLMs with RAG"
 nav_order: 1
 ---
 
+**Retrieval-Augmented Generation (RAG)** is a technique that enhances large language models by giving them access to external knowledge sources at query time. Instead of relying only on what the model learned during training, a RAG system retrieves relevant documents from a knowledge base and uses them as context when generating an answer. This makes responses more accurate, up to date, and grounded in specific data.
 
-TO DO: SHORT INTRO TO RAG
+In practice, RAG allows you to connect LLMs to your own documents—such as reports, manuals, or databases—so they can answer questions based on information you control. In this exercise, you will build a simple RAG system step by step and explore how retrieval settings influence what your model can (and cannot) do.
 
 ## Setting up your first RAG system
 We will now set up our first RAG system, using a report on the state of AI from McKinsey as the underlying data source. First, we will create our knowledge base. Such a knowledge base can contain manually written text documents, PDFs, Word documents, or web pages. With knowledge bases, you can structure your documents in different categories, and you can specify to which datasets your model should have access. 
@@ -32,6 +33,23 @@ Now you have composed your own RAG system! It is time to explore how it performs
 > Play around with your new RAG model. Have a look at the McKinsey report yourself, and ask questions to your LLM based on the report. What data is it able to retrieve and when does it fail? Does it do better on generic or specific questions? 
 
 ## Modifying the Retrieval Settings
-Based on your findings in the 
+It is now time to explore all the different settings for RAG systems that Open WebUI offers. Below, you can find an overview of the main settings that we can adjust.
+
+| Setting           |                                               Effect                                              |                Location                |
+|-------------------|:-------------------------------------------------------------------------------------------------:|:--------------------------------------:|
+| Full Context Mode | Feeds the entire document to the LLM, instead of matching the prompt to a section of the document | Admin Panel -> Settings -> Documents   |
+| Hybrid Search     | Combines vector search with keyword-based search using BM25                                       | Admin Panel -> Settings -> Documents   |
+| Top K             | Limits the number of retrieved documents or results to the top K                                  | Admin Panel -> Settings -> Documents   |
+| RAG Template      | Defines the prompt template for retrieval-augmented generation                                    | Admin Panel -> Settings -> Documents   |
+| System Prompt     | Sets the base instructions or behavior for the model                                              | Workspace -> Models -> Your Model Name |
+
+{: .action}
+> Based on your findings in the last step, change your RAG system and inspect how the performance changes. If you are not sure where to start, below we provide several options:
+> * Look at the _RAG Template_, what do you like about it, what don't you like? What would you change?
+> * Have a look at Hybrid Search (for more information, read [this article](https://medium.com/@csakash03/hybrid-search-is-a-method-to-optimize-rag-implementation-98d9d0911341)), does it improve the retrieved information?
+> * If you generally want different behavior of your LLM, try to adjust the RAG template or system prompt
 
 ## Next Step
+You have now succeeded at setting up your first RAG system, well done! We will now move onto a second exercise, where we will allow our LLM to answer questions regarding a SQL database. Go to the [next exercise](sql.md).
+
+_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)_
