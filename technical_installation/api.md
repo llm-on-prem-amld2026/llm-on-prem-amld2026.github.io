@@ -35,6 +35,8 @@ The API keys (secret) are available in an encrypted zip file in [this Google Dri
 >      * The provided API key in te Bearer token field
 > 4. Save the configuration. 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/19uZxFJfaPo?si=F4QlxI6NYv4JFqdE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### Verifying the connection
 You can now return to the main chat interface, and start a new chat. When opening the model selection dropdown, you should now see both the Qwen and Mistral model available in the list. You can select it and start a conversation, to see whether the API endpoints work.
 
