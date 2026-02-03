@@ -32,6 +32,8 @@ Now you have composed your own RAG system! It is time to explore how it performs
 {: .action}
 > Play around with your new RAG model. Have a look at the McKinsey report yourself, and ask questions to your LLM based on the report. What data is it able to retrieve and when does it fail? Does it do better on generic or specific questions? 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_-5nSR31CP8?si=-95RUPwDPJto8UOH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Modifying the Retrieval Settings
 It is now time to explore all the different settings for RAG systems that Open WebUI offers. Below, you can find an overview of the main settings that we can adjust.
 
