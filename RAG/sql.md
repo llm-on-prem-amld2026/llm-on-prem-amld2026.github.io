@@ -4,7 +4,7 @@ parent: "Powering LLMs with RAG"
 nav_order: 2
 ---
 
-ADD SHORT INTRO TO SQL DATABASE
+Relational databases are one of the most common ways real-world data is stored and accessed. SQL (Structured Query Language) databases organize data into tables with well-defined schemas, making them efficient for querying, filtering, and aggregating large datasets. By linking an SQL database to an LLM, we can move beyond static documents and enable the model to answer questions grounded in structured, up-to-date data. This is a powerful extension of Retrieval-Augmented Generation (RAG), allowing the LLM to reason over rows, columns, and relationships rather than just text. An introduction to SQL can be found [here](https://www.w3schools.com/sql/sql_intro.asp).
 
 ## Adding a SQL Database
 We will now add an existing SQL server to our Open WebUI instance. Specifically, we will connect a [soccer database](https://www.kaggle.com/datasets/hugomathien/soccer) from Kaggle, containing over 25,000 matches and over 10,000 players. We set up this server using [PostgreSQL](https://www.w3schools.com/postgresql/), a widely used open-source object-relational database management system. We will first add a **tool** to our Open WebUI, which will specify how the LLM should execute SQL queries. Then, we will specify the specifics of our SQL server in the valves of the tool.
@@ -299,7 +299,15 @@ class Tools:
 </details>
 
 {: .note}
-> ADD A FEW NOTES ON THE CODE ABOVE
+> * The tool is built using **SQLAlchemy**, which provides a unified interface for connecting to different SQL databases (PostgreSQL, MySQL, SQLite, Oracle) with minimal changes to the code.
+> * Database connection details (host, user, password, port, database name, and type) are defined in the **Valves** class. These values can be adjusted from the Open WebUI interface without modifying the code itself.
+> * The `_get_engine()` method dynamically constructs the correct connection string based on the selected database type and returns a reusable SQLAlchemy engine.
+> * Several helper functions are exposed to the LLM:
+>   * `list_all_tables` lets the model discover what tables exist in the database.
+>   * `get_table_indexes` provides insight into table indexes, which can hint at primary keys and optimized query paths.
+>   * `table_data_schema` describes table schemas (columns, data types, nullability, and keys), enabling the LLM to form valid SQL queries.
+> * The `execute_read_query` function strictly enforces **read-only access**. Only SELECT-style queries are allowed, and potentially destructive SQL keywords (e.g., INSERT, UPDATE, DELETE, DROP) are explicitly blocked.
+> * Query results are returned in **CSV format**, making them easy for the LLM to parse, reason over, and cite in its responses.
 
 Now that we have added the tool, all that remains is to specify the details of our SQL server in the valves. Then, we can use our LLM to execute SQL queries of our liking.
 
