@@ -315,7 +315,7 @@ Now that we have added the tool, all that remains is to specify the details of o
 > In your **Workspace**, under **Tools**, click on the wheel to adjust the valves. Specify the details below:
 > * **Db Host:** 91.92.143.253
 > * **Db User:** participant
-> * **Db Password:** _<See screen slides>_
+> * **Db Password:** _See password on the screen in the room_
 > * **Db Name:** soccer_db
 > * **Db Port:** 5432
 > * **Db Type:** postgresql
