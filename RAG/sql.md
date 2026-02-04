@@ -302,12 +302,7 @@ class Tools:
 > * The tool is built using **SQLAlchemy**, which provides a unified interface for connecting to different SQL databases (PostgreSQL, MySQL, SQLite, Oracle) with minimal changes to the code.
 > * Database connection details (host, user, password, port, database name, and type) are defined in the **Valves** class. These values can be adjusted from the Open WebUI interface without modifying the code itself.
 > * The `_get_engine()` method dynamically constructs the correct connection string based on the selected database type and returns a reusable SQLAlchemy engine.
-> * Several helper functions are exposed to the LLM:
->   * `list_all_tables` lets the model discover what tables exist in the database.
->   * `get_table_indexes` provides insight into table indexes, which can hint at primary keys and optimized query paths.
->   * `table_data_schema` describes table schemas (columns, data types, nullability, and keys), enabling the LLM to form valid SQL queries.
 > * The `execute_read_query` function strictly enforces **read-only access**. Only SELECT-style queries are allowed, and potentially destructive SQL keywords (e.g., INSERT, UPDATE, DELETE, DROP) are explicitly blocked.
-> * Query results are returned in **CSV format**, making them easy for the LLM to parse, reason over, and cite in its responses.
 
 Now that we have added the tool, all that remains is to specify the details of our SQL server in the valves. Then, we can use our LLM to execute SQL queries of our liking.
 
