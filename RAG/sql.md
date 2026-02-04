@@ -326,3 +326,79 @@ Now you're tool is all ready! It is time to start experimenting and evaluate how
 > When starting a new chat, in your chat window, click on _Integration -> Tools_, and toggle on your tool. Now the access to the SQL database is enabled. You can now ask the LLM questions that can be answered based on the database. Try it out, how well does it perform? In what cases does it not behave as you expected? 
 
 ## Additional exercise: Launching Your Own SQL Server
+In the previous part, you were using a SQL database that we are running using PostgreSQL. Now, you will launch your own SQL database, using SQLite. Unlike PostgreSQL or MySQL, SQLite does not run as a separate server. Instead, the entire database lives in a single .sqlite file. This makes SQLite ideal for lightweight experiments and local development. We will first set up our environment on our compute instance, after which we pull a database from Kaggle.
+
+{: .action}
+> You will first need to make an account on [Kaggle](https://kaggle.com), and set up an API key. Once you made your account, click on your profile picture at the top right to go to the settings. In the settings, generate an **API token** and save it carefully, you will need it to pull a dataset to your compute instance.
+
+Now, we will guide you through the steps to launch your own SQL server and add it to your Open WebUI. Follow the steps below carefully.
+
+{: .action}
+> Follow the steps below to prepare your environment with `uv`. For each step, copy the code and paste and execute it on the command line of your compute instance.
+
+* **Step 1:** Install the `uv` environment manager:
+```
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.local/bin/env
+```
+
+* **Step 2:** Initialize your environment:
+```
+cd ~
+uv init sql
+cd sql
+source .venv/bin/activate
+uv pip install kaggle
+```
+
+* **Step 3:** Configure your Kaggle API credentials. 
+    * First make the directory: `mkdir -p ~/.kaggle`
+    * Now create the file: `nano ~/.kaggle/kaggle.json`
+    * Add the credentials in this format: `{"username":"<your_username>","key":"<your_api_key>"}`
+    * Set the permissions correctly: `chmod 600 ~/.kaggle/kaggle.json`
+
+* **Step 4:** Download a specific dataset, for example [tweets on US airline sentiment](https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment?select=database.sqlite)
+```
+kaggle datasets download -d crowdflower/twitter-airline-sentiment
+sudo apt install unzip
+unzip twitter-airline-sentiment.zip
+```
+* **Step 5:** Install sqlite on your compute instance, in case you want to explore queries locally. Then copy the database to your Open WebUI backend.
+```
+sudo apt-get install sqlite3 -y
+sudo cp database.sqlite ../data_openwebui/
+```
+
+* **Step 6:** Adjust the valves of your tool to point to your local database. Specifically, you should specify:
+    * **Db Host:** localhost
+    * **Db User:** admin (default value)
+    * **Db Password:** admin (default value)
+    * **Db Name:** /app/backend/data/database.sqlite
+    * **Db Port:** 3306 (default value)
+    * **Db Type:** sqlite
+ 
+* **Step 7:** Explore the newly linked SQL database! You are now exploring an SQL database hosted on your own compute instance. What can you find out about the data? You can still not modify your data, due to the constraints in the tool code. If you wish, you can try to alter the tool code to allow yourself to modify the database. 
+
+{: .note}
+> You may have to help the LLM to find the right column names, in order to compose the correct queries. Here is an overview of each of the columns of the database.
+> | Column Name | Description |
+> |-------------|-------------|
+> | tweet_id | Unique identifier for each tweet (Primary Key) |
+> | airline_sentiment | Sentiment classification of the tweet (positive, negative, or neutral) |
+> | airline_sentiment_confidence | Confidence score for the sentiment classification |
+> | negativereason | Specific reason for negative sentiment (e.g., "late flight", "bad service") |
+> | negativereason_confidence | Confidence score for the negative reason classification |
+> | airline | Name of the airline mentioned in the tweet |
+> | airline_sentiment_gold | Gold standard/manually verified sentiment label (for validation) |
+> | name | Twitter username of the person who posted the tweet |
+> | negativereason_gold | Gold standard/manually verified negative reason (for validation) |
+> | retweet_count | Number of times the tweet was retweeted |
+> | text | The actual tweet content/message |
+> | tweet_coord | Geographic coordinates where the tweet was posted |
+> | tweet_created | Timestamp when the tweet was created |
+> | tweet_location | Location information from the user's profile |
+> | user_timezone | Timezone setting of the user who posted the tweet |
+
+
+## Next Step
+Next, we will explore tools and MCP. Go to the next section [here](../MCP/quickstart.md).
