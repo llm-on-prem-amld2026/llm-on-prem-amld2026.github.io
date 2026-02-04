@@ -380,24 +380,25 @@ sudo cp database.sqlite ../data_openwebui/
 * **Step 7:** Explore the newly linked SQL database! You are now exploring an SQL database hosted on your own compute instance. What can you find out about the data? You can still not modify your data, due to the constraints in the tool code. If you wish, you can try to alter the tool code to allow yourself to modify the database. 
 
 {: .note}
-> You may have to help the LLM to find the right column names, in order to compose the correct queries. Here is an overview of each of the columns of the database.
-> | Column Name | Description |
-> |-------------|-------------|
-> | tweet_id | Unique identifier for each tweet (Primary Key) |
-> | airline_sentiment | Sentiment classification of the tweet (positive, negative, or neutral) |
-> | airline_sentiment_confidence | Confidence score for the sentiment classification |
-> | negativereason | Specific reason for negative sentiment (e.g., "late flight", "bad service") |
-> | negativereason_confidence | Confidence score for the negative reason classification |
-> | airline | Name of the airline mentioned in the tweet |
-> | airline_sentiment_gold | Gold standard/manually verified sentiment label (for validation) |
-> | name | Twitter username of the person who posted the tweet |
-> | negativereason_gold | Gold standard/manually verified negative reason (for validation) |
-> | retweet_count | Number of times the tweet was retweeted |
-> | text | The actual tweet content/message |
-> | tweet_coord | Geographic coordinates where the tweet was posted |
-> | tweet_created | Timestamp when the tweet was created |
-> | tweet_location | Location information from the user's profile |
-> | user_timezone | Timezone setting of the user who posted the tweet |
+> You may have to help the LLM to find the right column names, in order to compose the correct queries. Below, you can see an overview of the columns of the database. For more information on the dataset, visit the [Kaggle page](https://www.kaggle.com/datasets/crowdflower/twitter-airline-sentiment?select=database.sqlite).
+
+| Column Name | Description |
+|-------------|-------------|
+| tweet_id | Unique identifier for each tweet (Primary Key) |
+| airline_sentiment | Sentiment classification of the tweet (positive, negative, or neutral) |
+| airline_sentiment_confidence | Confidence score for the sentiment classification |
+| negativereason | Specific reason for negative sentiment (e.g., "late flight", "bad service") |
+| negativereason_confidence | Confidence score for the negative reason classification |
+| airline | Name of the airline mentioned in the tweet |
+| airline_sentiment_gold | Gold standard/manually verified sentiment label (for validation) |
+| name | Twitter username of the person who posted the tweet |
+| negativereason_gold | Gold standard/manually verified negative reason (for validation) |
+| retweet_count | Number of times the tweet was retweeted |
+| text | The actual tweet content/message |
+| tweet_coord | Geographic coordinates where the tweet was posted |
+| tweet_created | Timestamp when the tweet was created |
+| tweet_location | Location information from the user's profile |
+| user_timezone | Timezone setting of the user who posted the tweet |
 
 
 ## Next Step
