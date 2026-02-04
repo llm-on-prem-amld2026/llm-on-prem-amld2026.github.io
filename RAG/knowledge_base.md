@@ -12,7 +12,7 @@ In practice, RAG allows you to connect LLMs to your own documents—such as repo
 We will now set up our first RAG system, using a report on the state of AI from McKinsey as the underlying data source. First, we will create our knowledge base. Such a knowledge base can contain manually written text documents, PDFs, Word documents, or web pages. With knowledge bases, you can structure your documents in different categories, and you can specify to which datasets your model should have access. 
 
 {: .action}
-> 1. Download the McKinsey report on the state of AI <a href="assets/McKinsey_AI_2025.pdf" download>here</a>.
+> 1. Download the McKinsey report on the state of AI <a href="../assets/McKinsey_AI_2025.pdf" download>here</a>.
 > 2. On the left side of your chat interface, select the bottom option **Workspace**
 > 3. At the top of the screen, select **Knowledge**, and select the option **+ New Knowledge** at the top. Fill in the fields, giving the knowledge base a name and description. Do not forget to set the knowledge base to **public**.
 > 4. Now, add content to the knowledge base, and select the PDF file you downloaded in step 1.
