@@ -419,4 +419,4 @@ sudo cp database.sqlite ../data_openwebui/
 ## Next Step
 Next, we will explore tools and MCP. Go to the next section [here](../MCP/quickstart.md).
 
-_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)_
+_Author: [Alexander Sternfeld](https://ch.linkedin.com/in/alexander-sternfeld-93a01799)_, [Elena Nazarenko](https://www.linkedin.com/in/lena-nazarenko/)_
