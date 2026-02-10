@@ -9,9 +9,12 @@ Relational databases are one of the most common ways real-world data is stored a
 ## Adding a SQL Database
 We will now add an existing SQL server to our Open WebUI instance. Specifically, we will connect a [soccer database](https://www.kaggle.com/datasets/hugomathien/soccer) from Kaggle, containing over 25,000 matches and over 10,000 players. We set up this server using [PostgreSQL](https://www.w3schools.com/postgresql/), a widely used open-source object-relational database management system. We will first add a **tool** to our Open WebUI, which will specify how the LLM should execute SQL queries. Then, we will specify the specifics of our SQL server in the valves of the tool.
 
+### 1. Adding the SQL Tool
+We will first add a Tool to Open WebUI that teaches the LLM how to talk to a database.
+
 {: .action}
 > 1. Go to your **workspace**, on the left side of the screen. Then, move to **Tools** at the top of the screen.
-> 2. Click on **+ New Tool**, and replace the template code with the code below. Give your tool a name and description, and don't forget to save it.
+> 2. Click on **+ New Tool**, name it `SQL_Soccer` and replace the template code with the code below. Don't forget to **save the tool**.
 
 <details markdown="1">
 <summary>Show filter code</summary>
@@ -304,10 +307,11 @@ class Tools:
 > * The `_get_engine()` method dynamically constructs the correct connection string based on the selected database type and returns a reusable SQLAlchemy engine.
 > * The `execute_read_query` function strictly enforces **read-only access**. Only SELECT-style queries are allowed, and potentially destructive SQL keywords (e.g., INSERT, UPDATE, DELETE, DROP) are explicitly blocked.
 
+### 2. Configuring the Connection (The Valves)
 Now that we have added the tool, all that remains is to specify the details of our SQL server in the valves. Then, we can use our LLM to execute SQL queries of our liking.
 
 {: .action}
-> In your **Workspace**, under **Tools**, click on the wheel to adjust the valves. Specify the details below:
+> In your **Workspace**, under **Tools**, click on the gear icon to adjust the valves. Specify the details below (case sensitive!):
 > * **Db Host:** 91.92.143.253
 > * **Db User:** participant
 > * **Db Password:** _See password on the screen in the room_
@@ -315,10 +319,25 @@ Now that we have added the tool, all that remains is to specify the details of o
 > * **Db Port:** 5432
 > * **Db Type:** postgresql
 
+### 3. System Prompting
+Tools are "passive" - the LLM often forgets to use them or refuses to run code due to safety training. We must give it a specific task description to force it to behave like a Data Analyst. Select and copy one of the prompts from the _Prompt Library_. Click [the link](https://docs.google.com/document/d/1jJExGSSCe7ub5EiPJOFTh6FkvOYtRDyHruoi97CqC5A/edit?usp=sharing) to see the different system prompt options.
+
+{: .action}
+> 1. When you are in a chat, go to your Chat Controls (top right settings icon).
+> 2. Paste the system prompt you chose into the System Prompt field.
+> 3. Click Save (or close the panel).
+
+### 4. Testing the Connection
 Now you're tool is all ready! It is time to start experimenting and evaluate how well your LLM can query the database. Have a look at the [database](https://www.kaggle.com/datasets/hugomathien/soccer), and think about what questions you may ask.
 
 {: .action}
-> When starting a new chat, in your chat window, click on _Integration -> Tools_, and toggle on your tool. Now the access to the SQL database is enabled. You can now ask the LLM questions that can be answered based on the database. Try it out, how well does it perform? In what cases does it not behave as you expected? 
+> When starting a new chat, in your chat window, click on _Integration -> Tools_, and toggle on your tool. Now the access to the SQL database is enabled. You can now ask the LLM questions that can be answered based on the database. Try it out, how well does it perform? In what cases does it not behave as you expected? Below are a few questions you can test
+> * **Discovery:** _"List all the tables in the database."_ (Tests connection)
+> * **Schema:** _"What columns are in the `player` table?"_ (Tests schema reading)
+> * **Data Retrieval:** __"Get me the height and weight of player 'Aaron Appindangoye'. Do not guess."_ (Tests full execution)
+
+{: .note}
+> Important: SQL is case-sensitive. The table is likely named player, not Player.
 
 ## Additional exercise: Launching Your Own SQL Server
 In the previous part, you were using a SQL database that we are running using PostgreSQL. Now, you will launch your own SQL database, using SQLite. Unlike PostgreSQL or MySQL, SQLite does not run as a separate server. Instead, the entire database lives in a single .sqlite file. This makes SQLite ideal for lightweight experiments and local development. We will first set up our environment on our compute instance, after which we pull a database from Kaggle.
