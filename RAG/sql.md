@@ -361,6 +361,7 @@ source $HOME/.local/bin/env
 cd ~
 uv init sql
 cd sql
+uv venv
 source .venv/bin/activate
 uv pip install kaggle
 ```
