@@ -334,7 +334,7 @@ Now you're tool is all ready! It is time to start experimenting and evaluate how
 > When starting a new chat, in your chat window, click on _Integration -> Tools_, and toggle on your tool. Now the access to the SQL database is enabled. You can now ask the LLM questions that can be answered based on the database. Try it out, how well does it perform? In what cases does it not behave as you expected? Below are a few questions you can test
 > * **Discovery:** _"List all the tables in the database."_ (Tests connection)
 > * **Schema:** _"What columns are in the `player` table?"_ (Tests schema reading)
-> * **Data Retrieval:** __"Get me the height and weight of player 'Aaron Appindangoye'. Do not guess."_ (Tests full execution)
+> * **Data Retrieval:** _"Get me the height and weight of player 'Aaron Appindangoye'. Do not guess."_ (Tests full execution)
 
 {: .note}
 > Important: SQL is case-sensitive. The table is likely named player, not Player.
