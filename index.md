@@ -13,14 +13,14 @@ Alexander Sternfeld, Dr. Elena Nazarenko, Prof. Dr. Aygul Zagidullina, Gaetan St
 
 ### Part 1: My First LLM App, Intro to RAG
 * 09.00 - 09.35: AI Today: The Generative Landscape
-* 09.35 - 10.30: [Serving a LLM On-Prem: Open WebUI](setup/index.md)
+* 09.35 - 10.30: [Serving a LLM On-Prem: Open WebUI](technical_installation/server_cpuonly.md)
 * 10.30 - 11.00: Break
 * 11.00 - 11.50: [RAG - Knowledge bases and Linking a SQL Database](RAG/knowledge_base.md)
-* 11.50 - 12.20: [How agents talk to tools: Towards MCP](MCP/index.md)
+* 11.50 - 12.20: [How agents talk to tools: Towards MCP](MCP/quickstart.md)
 * 12.20 - 12.30: Closing Remarks
 
 ### Part 2: Guardrails, RAG and Threat Modelling
-* 14.00 - 15.15: [Augmenting LLM Capabilities](functions/index.md)
+* 14.00 - 15.15: [Augmenting LLM Capabilities](functions/quickstart.md)
 * 15.15 - 15.30: [Prompt Injection](prompt_injection.md)
 * 15.30 - 16.00: Break
 * 16.00 - 16.45: [Guardrails Selection and Implementation](prompt_injection.md)
