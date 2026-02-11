@@ -158,6 +158,11 @@ Now that we have set up the function, we can use it in chat!
 
 ![](../assets/integration.png)
 
+### Evaluating your filter
+The filter above is a toy example intended to demonstrate the mechanics of Open WebUI filter functions — it is not a production-ready PPI solution. It only covers a handful of patterns (API keys, private keys, and AWS secrets) and misses many common categories of sensitive data such as email addresses, phone numbers, social security numbers, credit card numbers, or physical addresses. It also relies purely on regex matching, which can be brittle: slight formatting variations, obfuscation, or encoding tricks can easily bypass detection.
+
+Try experimenting with the filter to find its blind spots. Can you get sensitive information past it by changing formatting or spacing? What types of personal data does it completely ignore? Thinking adversarially about filters like this is an important skill. How would you improve upon this first version?
+
 ## What is next?
 Now that you understand the basics of functions, we can move onto a more complex setting: **agentic frameworks**. In the [next section](agentic.md), you will set up an agentic framework for secure coding with LLMs.
 
