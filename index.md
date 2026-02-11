@@ -21,9 +21,9 @@ Alexander Sternfeld, Dr. Elena Nazarenko, Gaetan Stein, Adrien O'Hana and Zach S
 
 ### Part 2: Guardrails, RAG and Threat Modelling
 * 14.00 - 15.15: [Augmenting LLM Capabilities](functions/quickstart.md)
-* 15.15 - 15.30: [Prompt Injection](prompt_injection.md)
+* 15.15 - 15.30: Prompt Injection and Guardrails - Theory
 * 15.30 - 16.00: Break
-* 16.00 - 16.45: [Guardrails Selection and Implementation](prompt_injection.md)
+* 16.00 - 16.45: [Prompt Injection and Guardrails - Exercises](prompt_injection.md)
 * 16.45 - 17.15: Threat modeling and basics of MLOps for LLM security
 * 17.15 - 17.30: Closing remarks
 
