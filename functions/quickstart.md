@@ -52,7 +52,7 @@ A filter contains the following components:
 * **Outlet:** the outlet function is the last part of the pipeline, enabling you to adjust the final LLM output. 
 
 ## Adding your function to Open WebUI
-We will now add a filter function to our Open WebUI instance, which filters the user input for Private Personal Information (PPI). Below, you will find the instructions for adding and using the filter, and the python code for the filter. The code is explained in detail in the [additional information](<../additional_information/functions.md>). 
+We will now add a filter function to our Open WebUI instance, which filters the user input for Private Personal Information (PPI). Below, you will find the instructions for adding and using the filter, and the python code for the filter. The code is explained in detail in the [additional information](<../Additional Information/functions.md>). 
 
 We start by adding our function to our Open WebUI instance. This is done through the admin panel, where all the settings are. 
 
