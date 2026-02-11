@@ -8,7 +8,7 @@ nav_order: 6
 
 ## What This Is About
 
-You're going to spend about 30 minutes learning why LLMs are fundamentally vulnerable to prompt injection—and why slapping more rules on top doesn't really fix the problem.
+You're going to spend about 45 minutes learning why LLMs are fundamentally vulnerable to prompt injection—and why slapping more rules on top doesn't really fix the problem.
 
 By the end, you'll understand:
 
