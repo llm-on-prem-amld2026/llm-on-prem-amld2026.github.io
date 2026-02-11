@@ -7,7 +7,7 @@ nav_order: 1
 # Welcome! 
 Thank you for choosing to attend (part of) our workshop _Building On-Prem LLM Applications for the Real World._ This website is the backbone of the course, and will provide you with instructions for each of the components. This workshop consists of two parts, where the first one is given in the morning and the second part in the afternoon. We hope you enjoy the workshop and learn plenty!
 
-Alexander Sternfeld, Dr. Elena Nazarenko, Prof. Dr. Aygul Zagidullina, Gaetan Stein, Adrien O'Hana and Zach Schillaci
+Alexander Sternfeld, Dr. Elena Nazarenko, Gaetan Stein, Adrien O'Hana and Zach Schillaci
 
 ## Agenda
 
@@ -27,4 +27,4 @@ Alexander Sternfeld, Dr. Elena Nazarenko, Prof. Dr. Aygul Zagidullina, Gaetan St
 * 16.45 - 17.15: Threat modeling and basics of MLOps for LLM security
 * 17.15 - 17.30: Closing remarks
 
-![](assets/images/logos.png)
+![](assets/logos_all.png)
