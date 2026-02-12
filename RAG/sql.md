@@ -17,7 +17,7 @@ We will first add a Tool to Open WebUI that teaches the LLM how to talk to a dat
 > 2. Click on **+ New Tool**, name it `SQL_Soccer` and replace the template code with the code below. Don't forget to **save the tool**.
 
 <details markdown="1">
-<summary>Show filter code</summary>
+<summary>Show SQL Tool</summary>
 
 ```python
 import os
