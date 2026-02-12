@@ -15,7 +15,7 @@ There are three types of functions you can use:
 In this section, you will learn how to add functions to Open WebUI, and how to enable them in a chat. In the next section, you will build your own Open WebUI function for an agentic coding framework. 
 
 ## Filter functions
-Each of the different function types has it's own structure, which is described in the [documentation](https://docs.openwebui.com/features/plugin/functions/). Here, we will discuss the [filter function](https://docs.openwebui.com/features/plugin/functions/filter), while in the next section you will work with pipe functions. The filter function is structured as follows:
+Each of the different function types has it's own structure, which is described in the [documentation](https://docs.openwebui.com/features/plugin/functions/). Here, we will discuss the [filter function](https://docs.openwebui.com/features/plugin/functions/filter), while in the next section you will work with pipe functions. The filter function **base template** is structured as follows:
 
 ```python
 from pydantic import BaseModel
@@ -52,13 +52,13 @@ A filter contains the following components:
 * **Outlet:** the outlet function is the last part of the pipeline, enabling you to adjust the final LLM output. 
 
 ## Adding your function to Open WebUI
-We will now add a filter function to our Open WebUI instance, which filters the user input for Private Personal Information (PPI). Below, you will find the instructions for adding and using the filter, and the python code for the filter. The code is explained in detail in the [additional information](<../Additional Information/functions.md>). 
+We will now add a filter function to our Open WebUI instance, which filters the user input for Private Personal Information (PPI). Below, you will find the instructions for adding and using the filter, and the python code for the filter. The code is explained in detail in the [additional information](<../additional_information/functions.md>). 
 
 We start by adding our function to our Open WebUI instance. This is done through the admin panel, where all the settings are. 
 
 {: .action}
 > 1. In your Open WebUI instance, go to `admin panel` -> `functions`. In the top right, click on `+ New Function`.
-> 2. Give the function a name (e.g. "PPI filter) and a description. Then remove the template code that is automatically there, and copy-paste the function below as the code. Then, save the function.
+> 2. Give the function a name (e.g. "PPI filter) and a description. Then remove the template code that is automatically there, and copy-paste the **function below, which is collapsed as _show filter code_** as the code. Then, save the function.
 > 3. From the `functions` tab in the `admin panel`, make sure that the function is toggled on.Then, by   click on the `•••` to also enable it globally (see image below).
 
 <details markdown="1">
