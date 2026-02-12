@@ -37,7 +37,7 @@ uv pip install pandas
 This sets up an isolated Python environment where we can safely install dependencies without affecting the system Python.  
 
 ## Launching the tool server
-We will now set up a lightweight tool server using FastMCP. This server will allow you to run Python tools that add new functionalities to your LLMs. Specifically, we will now add a tool that can perform analyses on a small sample CSV file regarding employees. In the [next section](your_own_tool.md), we provide different exercises for different tools you can add. We will now first create a Python file which loads the data and provides the functions for analysing the data. The code is explained in detail in the [additional information](<../Additional Information/MCP_functions.md>). Then, we will launch the tool server and configure our Open WebUI instance correctly.
+We will now set up a lightweight tool server using FastMCP. This server will allow you to run Python tools that add new functionalities to your LLMs. Specifically, we will now add a tool that can perform analyses on a small sample CSV file regarding employees. In the [next section](your_own_tool.md), we provide different exercises for different tools you can add. We will now first create a Python file which loads the data and provides the functions for analysing the data. The code is explained in detail in the [additional information](../additional_information/MCP_functions.md). Then, we will launch the tool server and configure our Open WebUI instance correctly.
 
 {: .action}
 > 1. Open a new Python file with `nano tools.py`
