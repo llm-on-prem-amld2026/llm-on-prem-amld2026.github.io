@@ -12,4 +12,4 @@ Here, the slides are available:
 * [MCP](assets/MCP.pdf)
 * [Augmenting LLM Capabilities](assets/Augmenting_LLM_Capabilities.pdf)
 * [Prompt Injection and Guardrails](assets/prompt_injection_guardrails.pdf)
-* [Threat Modeling](assets/threat_modeling.pdf)
+* [Threat Modeling](assets/Threat_Modeling_AMLD.pdf)
